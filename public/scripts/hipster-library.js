@@ -280,7 +280,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		var templateIndex = Math.floor(Math.random() * tCount) + 1;
 		var selectedTemplate = templates[templateIndex - 1];
 		var finalSentence = sentencePolisher(selectedTemplate)
-		return finalSentence;
+		return toTitleCase(finalSentence);
 	};
 
 	function init()
@@ -376,13 +376,13 @@ var HipsterDictionary = (function(Window, undefined ){
 
 		$('iframe').remove();
 		var link = document.createElement('a');
-		link.setAttribute('href', "https://twitter.com/intent/tweet?url=/&hashtags=AveryBeerstache");
+		link.setAttribute('href', "https://twitter.com/intent/tweet?hashtags=AveryBeerstache");
 		link.setAttribute('class', 'twitter-share-button pull-right');
 		link.setAttribute('style', 'margin-top:5px;');
 		link.setAttribute("data-size" ,"large");
 		link.setAttribute('data-text', descrip);
+		link.setAttribute('data-url', 'http://127.0.0.1/stache/the-beast');
 		link.setAttribute("data-related" ,"AveryBrewingCo,Mondo_Robot");
-		link.setAttribute("data-hastags", "AveryBeerstache");
 		beerElements.tweetButtonHolder.append(link);
 		
 		try {
@@ -407,21 +407,26 @@ var HipsterDictionary = (function(Window, undefined ){
 	function shuffle(array) {
 		var currentIndex = array.length, temporaryValue, randomIndex;
 
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
+		// While there remain elements to shuffle...
+		while (0 !== currentIndex) {
 
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
+			// Pick a remaining element...
+			randomIndex = Math.floor(Math.random() * currentIndex);
+			currentIndex -= 1;
 
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
+			// And swap it with the current element.
+			temporaryValue = array[currentIndex];
+			array[currentIndex] = array[randomIndex];
+			array[randomIndex] = temporaryValue;
+		}
+		return array;
+	}
 
-  return array;
-}
+	function toTitleCase(str)
+	{
+		return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+	}
+
 
 	return {
 		GenerateDescription: generateDescription,
