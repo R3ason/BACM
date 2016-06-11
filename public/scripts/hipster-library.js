@@ -49,16 +49,11 @@ var HipsterDictionary = (function(Window, undefined ){
 
     var exquisiteAdjectives = [
         'amatory',
-        'boorish',
         'bleeding edge',
-        'calamitous',
         'corpulent',
         'comely',
-        'defematory',
         'dilatory',
-        'dowdy',
         'efficacious',
-        'egregious',
         'epic',
         'equanimous',
         'exclusive',
@@ -71,9 +66,7 @@ var HipsterDictionary = (function(Window, undefined ){
         'jocular',
         'luminous',
         'meretricious',
-        'noxious',
         'obtuse',
-        'petulant',
         'pioneering',
         'quiescent',
         'redolent',
@@ -292,7 +285,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		addMask(beerElements.description);
 		setTimeout(function(){
 			var descrip = generateDescription();
-			beerElements.description.text(descrip);
+			beerElements.description.text(description);
 
 			var baseHref = beerElements.tweetButton.attr("href");
 			console.log(baseHref);
