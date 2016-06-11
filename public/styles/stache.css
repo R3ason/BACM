@@ -65,3 +65,29 @@
 	margin: auto;
 	text-align: center;
 }
+
+@media screen and (max-width: 600px){
+
+	div.label-and-info {
+		float: none !important;
+		margin: auto;
+		padding-top: 25%;
+	}
+
+	div.stache.pull-left{
+		float: none;
+		margin: auto;
+		padding-top: 0;
+		width: inherit;
+	}
+} 
+
+
+
+
+
+
+
+
+
+
