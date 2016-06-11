@@ -6,16 +6,33 @@ section.card{
 
 	margin: 50px auto;
 	padding: 20px;
+	position: relative;
 
+}
+
+div.loader{
+	color: transparent;
+	background-color: #1F1E1D;
+	background-image: url("https://d13yacurqjgara.cloudfront.net/users/372480/screenshots/1975846/zedazeni-loader-2.gif");
+	background-position: center;
+	content: '';
+	height: 100%;
+	position: absolute;
+	width: 350px;
+	top: 0;
+	left: 0;
+	z-index: 99;
 }
 
 img{
 	display: block;
 	margin: 15px auto;
-
 	max-width: 75%;
-
 	padding-bottom: 25px;
+}
+
+img.loaderImg{
+
 }
 
 ul{
