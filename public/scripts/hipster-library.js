@@ -247,7 +247,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		beerElements.abv = rootElement.find('#ABV');
 		beerElements.description = rootElement.find('#Description');
 		beerElements.location = rootElement.find('#Location');
-		beerElements.updateDescriptionLink = rootElement.find('a');
+		beerElements.updateDescriptionLink = rootElement.find('#HipsterLink');
 		beerElements.loadingDiv = $('div.loader');
 	}
 
