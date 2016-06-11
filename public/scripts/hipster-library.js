@@ -19,14 +19,30 @@ var HipsterDictionary = (function(Window, undefined ){
 
 	var partOfSpeech = {
 		'noun': [
-		'hop_varieties',
-		'dry_hop_varieties',
-		'yeast_varieties',
+			'hop_varieties',
+			'dry_hop_varieties',
+			'yeast_varieties',
 			'malt_varieties'
 		],
 		'adjective': [
 			'descriptors',
 			'categories'
+		],
+		'hop': [
+			'hop_varieties',
+			'dry_hop_varieties'
+		],
+		'pairings': [
+			'pairings'
+		],
+		'category': [
+			'categories'
+		],
+		'yeast': [
+			'yeast_varieties'
+		],
+		'malt': [
+			'malt_varieties'
 		]
 	};
 
@@ -36,8 +52,8 @@ var HipsterDictionary = (function(Window, undefined ){
 		"The {hop} hops in my {name} really add to the {category}, {adjective} flavors.",
 		"{name}: {adjective} artisinal disrupter extraordinaire!",
 		"{hop} hops enhance the matchless aroma and {adjective} essence.",
-		"I love embibing {name} with my {pairings} routine.  The {adjective} with the {malt} adds incredible mouth feel!",
-		"Mucho gusto from the {adjective} {hop} hops  artfully mingle with the {yeast} to create a uniquely supreme and {adjective} experience.",
+		"I love embibing {name} with my {pairings} routine.  The {adjective} notes along with the {malt} adds incredible mouth feel!",
+		"Mucho gusto from the {adjective} {hop} hops  artfully mingle with the {yeast} yeast to create a uniquely supreme and {adjective} experience.",
 		"Premium nuance from the playful balance of {adjective} hops aroma with the {malt} addition make my {name} from Avery a glorious palate pleaser.",
 		"No FOMO for the YOLO thanks to Avery and my {name} with the totes killer, {adjective} {category} flavor!",
 		"Where else can you find a {malt} malt paired with a {hop} hop, but Avery?  Artisan before those kids even knew what it meant.",
@@ -59,16 +75,105 @@ var HipsterDictionary = (function(Window, undefined ){
 			}
 		}
 
+		adjectiveList = shuffle(adjectiveList);
+
 		//Build Noun List
 		var nounList = [];
 		for(var i = 0; i < partOfSpeech.noun.length; i++) {
-			var category = beerObject[partOfSpeech.adjective[i]];
+			var category = beerObject[partOfSpeech.noun[i]];
 			if(category) {
 				nounList = nounList.concat(category);
 			}
 		}
 
-		template = template;
+		nounList = shuffle(nounList);
+
+		//Build Hop List
+		var hopList = [];
+		for(var i = 0; i < partOfSpeech.hop.length; i++) {
+			var category = beerObject[partOfSpeech.hop[i]];
+			if(category) {
+				hopList = hopList.concat(category);
+			}
+		}
+
+		hopList = shuffle(hopList);
+
+		//Build Pairing List
+		var pairingList = [];
+		for(var i = 0; i < partOfSpeech.pairings.length; i++) {
+			var category = beerObject[partOfSpeech.pairings[i]];
+			if(category) {
+				pairingList = pairingList.concat(category);
+			}
+		}
+
+		pairingList = shuffle(pairingList);
+
+		//Build Category List
+		var categoryList = [];
+		for(var i = 0; i < partOfSpeech.category.length; i++) {
+			var category = beerObject[partOfSpeech.category[i]];
+			if(category) {
+				categoryList = categoryList.concat(category);
+			}
+		}
+		//debugger;
+
+		categoryList = shuffle(categoryList);
+
+		//Build Yeast List
+		var yeastList = [];
+		for(var i = 0; i < partOfSpeech.yeast.length; i++) {
+			var category = beerObject[partOfSpeech.yeast[i]];
+			if(category) {
+				yeastList = yeastList.concat(category);
+			}
+		}
+
+		yeastList = shuffle(yeastList);
+
+		//Build Malt List
+		var maltList = [];
+		for(var i = 0; i < partOfSpeech.malt.length; i++) {
+			var category = beerObject[partOfSpeech.malt[i]];
+			if(category) {
+				maltList = maltList.concat(category);
+			}
+		}
+
+		maltList = shuffle(maltList);
+
+		var templateArray = template.split(" ");
+		
+		//Todo [Ben]: popping WILL break this if there are more instances than in the array!!!
+		for (var i = 0; i < templateArray.length; i++) {
+			var currentItem = templateArray[i];
+				switch(templateArray[i]) {
+					case '{adjective}':
+						templateArray[i] = adjectiveList.pop().toLowerCase();
+						break;
+					case '{noun}':
+						templateArray[i] = nounList.pop().toLowerCase();
+						break;
+					case '{hop}':
+						templateArray[i] = hopList.pop().toLowerCase();
+						break;
+					case '{pairings}':
+						templateArray[i] = pairingList.pop().toLowerCase();
+						break;
+					case '{category}':
+						templateArray[i] = categoryList.pop().toLowerCase();
+						break;
+					case '{yeast}':
+						templateArray[i] = yeastList.pop();
+						break;
+					case '{malt}':
+						templateArray[i] = maltList.pop();
+				}
+		}
+
+		template = templateArray.join(' ');
 
 		return template;
 	}
@@ -143,9 +248,29 @@ var HipsterDictionary = (function(Window, undefined ){
 
 		setTimeout(function() {
 			beerElements.loadingDiv.hide();
-		}, 5000);
+		}, 1500);
 		
 	}
+
+	function shuffle(array) {
+		var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
 	return {
 		GenerateDescription: generateDescription,
 		Init: init
