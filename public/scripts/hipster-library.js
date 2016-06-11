@@ -80,7 +80,7 @@ var HipsterDictionary = (function(Window, undefined ){
         "ruminative",
         "sartorial",
         "sticky",
-        "synergistic"
+        "synergistic",
         "turbulent",
         "verdant",
         "voracious",
@@ -119,6 +119,7 @@ var HipsterDictionary = (function(Window, undefined ){
 			}
 		}
 
+		adjectiveList = adjectiveList.concat(exquisiteAdjectives);
 		adjectiveList = shuffle(adjectiveList);
 
 		//Build Noun List
