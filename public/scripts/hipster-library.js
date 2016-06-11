@@ -7,6 +7,7 @@ var HipsterDictionary = (function(Window, undefined ){
 	var rootElement;
 	var beerElements = {};
 	var beerObject = {};
+	var abbreviatedBeerName;
 
 	var twitterHashtag = ' #AveryBeerstache';
 	var tweetLength = 140;
@@ -160,8 +161,9 @@ var HipsterDictionary = (function(Window, undefined ){
 	function sentencePolisher(template) {
 		//Insert Beer Name
 		var beerName = beerObject.name;
+		abbreviatedBeerName = beerName.replace('The ', '');
 		if(template.indexOf('{name}') > 0) {
-			beerName = beerName.replace('The ', '');
+			beerName = abbreviatedBeerName;
 		}
 		template = template.replace('{name}', beerName);
 
@@ -346,7 +348,7 @@ var HipsterDictionary = (function(Window, undefined ){
 			var descrip = generateDescription();
 			beerElements.description.text(descrip);
 			var authorDesc = shuffle(authorAdjectives).pop();
-			beerElements.author.text('~ A ' + authorDesc + ' ' + beerObject.name + " drinker")
+			beerElements.author.text('~ A ' + authorDesc + ' ' + abbreviatedBeerName + " drinker")
 			generateTwitterButton(descrip);
 
 			removeMask(beerElements.description);
@@ -364,15 +366,18 @@ var HipsterDictionary = (function(Window, undefined ){
 	function populatePageAssets(data)
 	{
 		beerObject = data.beer;
+		
 		beerElements.beerName.text(beerObject.name);
 		beerElements.beerLabel.attr('src', beerObject.label_image.original);
 		beerElements.beerStyle.text(beerObject.style);
 		beerElements.abv.text(beerObject.abv);
 
+		abbreviatedBeerName = beerObject.name.replace('The ', '');
+
 		var descrip = generateDescription();
 		beerElements.description.text(descrip);
 		var authorDesc = shuffle(authorAdjectives).pop();
-		beerElements.author.text('~ A ' + authorDesc + ' ' + beerObject.name + " drinker")
+		beerElements.author.text('~ A ' + authorDesc + ' ' + abbreviatedBeerName + " drinker")
 
 		generateTwitterButton(descrip);
 
