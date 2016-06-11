@@ -5,6 +5,8 @@ block pagestyles
 	link(rel="stylesheet", href="../styles/stache.css")
 
 block content
+	a(href="http://www.averybrewery.com")
+		img.top-logo(src="/images/avery-tab.svg", alt="Avery Brewery logo")
 	section.card.clearfix
 		div.loader AVERY IS THE BEST
 
@@ -25,7 +27,7 @@ block content
 			article#Description.centerHorizontal.hipster-text Some awesome stuff that describes the beer.
 				p#beerSignature.signature-text ~
 
-			div#tweetButtonHolder.pull-right
+			div#tweetButtonHolder.lower-button-holder
 
 block pagescripts
 	script(src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js")

@@ -1,7 +1,37 @@
 {
-	"dependencies": {
-		"express": "^4",
-		"jade": "^1",
-		"body-parser": "^1"
-	}
+  "dependencies": {
+    "express": "^4",
+    "jade": "^1",
+    "body-parser": "^1"
+  },
+  "devDependencies": {
+    "request": "^2.72.0",
+    "body-parser": "^1",
+    "request": "^2.72.0"
+  },
+  "name": "barrel-aged-code-monkeys",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PCLongmont/BACM.git"
+  },
+  "keywords": [
+    "avery",
+    "api",
+    "ipa",
+    "hipster"
+  ],
+  "author": "barrel aged code monkeys",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PCLongmont/BACM/issues"
+  },
+  "homepage": "https://github.com/PCLongmont/BACM#readme",
+  "description": ""
 }
