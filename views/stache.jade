@@ -7,6 +7,12 @@ block pagestyles
 block content
 	a(href="http://www.averybrewing.com" target="_new")
 		img.top-logo(src="/images/avery-tab.svg", alt="Avery Brewery logo")
+	nav
+		div
+			ul
+				each beer in beers
+					li
+						a(href="/stache/" + beer.id)= beer.name
 	section.card.clearfix
 		div.loader AVERY IS THE BEST
 
@@ -31,7 +37,7 @@ block content
 			div#tweetButtonHolder.lower-button-holder
 
 
-			nav.clearfix
+			nav.navbar.navbar-default.navbar-fixed-bottom
 				ul.relatedBeers.clearfix
 
 	div.overlay
