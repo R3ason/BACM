@@ -144,7 +144,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		}
 
 		exquisiteAdjectives = shuffle(exquisiteAdjectives).slice(-5);
-		debugger;
+
 		adjectiveList = adjectiveList.concat(exquisiteAdjectives);
 		adjectiveList = shuffle(adjectiveList);
 
@@ -245,6 +245,13 @@ var HipsterDictionary = (function(Window, undefined ){
 			}
 
 			template = templateArray.join(' ').replace(' ,', ',');
+
+			// Fix quotes
+			var quote = template.match(/\" (.*)\ "/)
+			if(quote) {
+				quote = quote.pop();
+				template = template.replace('" ' + quote + ' "', '"' + quote + '"');
+			}
 		} catch(err) {
 			template = 'Good sir, you have confounded me and left me speechless. Enjoy your ' + beerObject.name;
 		}
