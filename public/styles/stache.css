@@ -69,11 +69,18 @@
 	width: 60%;
 }
 
+#Description {
+	color: rgb(240, 240, 240);
+	text-shadow: 2px 2px 5px rgb(0,0,0);
+}
+
 .hipster-text {
 	padding-top: 45px;
 	font-size: 30px;
-	color: rgb(240, 240, 240);
-	text-shadow: 2px 2px 5px rgb(0,0,0);
+}
+
+#beerSignature {
+	text-align: right;
 }
 
 .generator-btn {

@@ -7,7 +7,16 @@ var HipsterDictionary = (function(Window, undefined ){
 	var rootElement;
 	var beerElements = {};
 	var beerObject = {};
+
 	var twitterHashtag = ' #AveryBeerstache';
+	var tweetLength = 140;
+
+	var authorAdjectives = [
+		'discerning',
+		'hipster',
+		'rugged',
+		'confounded'
+	];
 
 	var loadingMessages = [
 		'consulting hipsters...',
@@ -276,7 +285,8 @@ var HipsterDictionary = (function(Window, undefined ){
 		beerElements.beerLabel = rootElement.find('#BeerLabel');
 		beerElements.beerStyle = rootElement.find('#BeerStyle');
 		beerElements.abv = rootElement.find('#ABV');
-		beerElements.description = rootElement.find('#Description');
+		beerElements.description = rootElement.find('.hipster-text');
+		beerElements.author = rootElement.find('#beerSignature');
 		beerElements.location = rootElement.find('#Location');
 		beerElements.updateDescriptionLink = rootElement.find('#HipsterLink');
 		beerElements.loadingDiv = $('div.loader');
@@ -300,11 +310,13 @@ var HipsterDictionary = (function(Window, undefined ){
 
 	function handleDescriptionUpdate(e) {
 		e.preventDefault();
+		beerElements.author.text('');
 		addMask(beerElements.description);
 		setTimeout(function(){
 			var descrip = generateDescription();
 			beerElements.description.text(descrip);
-
+			var authorDesc = shuffle(authorAdjectives).pop();
+			beerElements.author.text('~ A ' + authorDesc + ' ' + beerObject.name + " drinker")
 			generateTwitterButton(descrip);
 
 			removeMask(beerElements.description);
@@ -329,6 +341,8 @@ var HipsterDictionary = (function(Window, undefined ){
 
 		var descrip = generateDescription();
 		beerElements.description.text(descrip);
+		var authorDesc = shuffle(authorAdjectives).pop();
+		beerElements.author.text('~ A ' + authorDesc + ' ' + beerObject.name + " drinker")
 
 		generateTwitterButton(descrip);
 
@@ -339,8 +353,8 @@ var HipsterDictionary = (function(Window, undefined ){
 	}
 
 	function generateTwitterButton(descrip) {
-		descrip = descrip.substr(0, 140 - twitterHashtag.length - 3);
-		descrip = descrip.length == 140 - twitterHashtag.length - 3
+		descrip = descrip.substr(0, tweetLength - twitterHashtag.length - 3);
+		descrip = descrip.length == tweetLength - twitterHashtag.length - 3
 			? descrip + '...'
 			: descrip;
 
