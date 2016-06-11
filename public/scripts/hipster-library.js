@@ -323,6 +323,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		beerElements.updateDescriptionLink = rootElement.find('#HipsterLink');
 		beerElements.loadingDiv = $('div.loader');
 		beerElements.tweetButtonHolder = $('#tweetButtonHolder');
+		beerElements.relatedLinksList = $('ul.relatedBeers');
 	}
 
 	console.log(beerElements.tweetButton);
@@ -381,6 +382,8 @@ var HipsterDictionary = (function(Window, undefined ){
 
 		generateTwitterButton(descrip);
 
+		generateRelatedLinks();
+
 		setTimeout(function() {
 			beerElements.loadingDiv.hide();
 		}, 1500);
@@ -420,6 +423,17 @@ var HipsterDictionary = (function(Window, undefined ){
 					clearInterval(retry);
 				}
 			}, 250);
+		}
+	}
+
+	function generateRelatedLinks() {
+		beerElements.relatedLinksList.empty();
+		if(beerObject.related_beers) {
+			var relatedBeers = beerObject.related_beers;
+			for(var i = 0; i < relatedBeers.length; i++) {
+				var listItem = $('<li><a href="javascript:void(0);">' + relatedBeers[i].name + '</a></li>');
+				beerElements.relatedLinksList.append(listItem.clone());
+			}
 		}
 	}
 

@@ -31,11 +31,8 @@ block content
 			div#tweetButtonHolder.lower-button-holder
 
 
-			nav
-				ul
-					each beer in beers
-						li
-							a(href="/stache/" + beer.id)= beer.name
+			nav.clearfix
+				ul.relatedBeers.clearfix
 
 	div.overlay
 block footer
