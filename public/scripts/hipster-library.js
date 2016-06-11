@@ -46,7 +46,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		]
 	};
 
-    var exquisiteAdjectives = {
+    var exquisiteAdjectives = [
         "amatory",
         "boorish",
         "bleeding edge",
@@ -67,7 +67,7 @@ var HipsterDictionary = (function(Window, undefined ){
         "gustatory",
         "heuristic",
         "hubristic",
-        "joculuar",
+        "jocular",
         "luminous",
         "meretricious",
         "noxious",
@@ -88,7 +88,7 @@ var HipsterDictionary = (function(Window, undefined ){
         "unbelievable",
         "unique",
         "zealous",
-    }
+    ];
 
 	var templates = [
 		'This {name} is so {adjective}',
