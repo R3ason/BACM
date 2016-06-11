@@ -9,9 +9,13 @@ html(lang='en')
 
 		block pagestyles
 
-	body.container.backdrop.loading
+	body.container-fluid.backdrop.loading
 		block content
+		
+		block footer
 
+		block overlays
+			div.overlay
 
 		block layoutscripts
 		script(src="https://code.jquery.com/jquery-3.0.0.min.js")

@@ -15,8 +15,17 @@ article > section{
 	background:rgba(255,255,255,0.95);
 }
 
+.brand {
+	width: 35%;
+}
+
+.map-and-info {
+	padding-top: 90px
+}
+
 #map {
-	height: 700px;
+	/*height: 700px;*/
+	height: 500px;
 	width:100%;
 }
 
@@ -26,7 +35,8 @@ article > section{
 }
 
 #locations-list{
-	height: 700px;
+	/*height: 700px;*/
+	height: 500px;
 	overflow: auto;
 }
 

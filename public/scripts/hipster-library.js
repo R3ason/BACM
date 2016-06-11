@@ -7,6 +7,7 @@ var HipsterDictionary = (function(Window, undefined ){
 	var rootElement;
 	var beerElements = {};
 	var beerObject = {};
+	var abbreviatedBeerName;
 
 	var twitterHashtag = ' #AveryBeerstache';
 	var tweetLength = 140;
@@ -17,7 +18,9 @@ var HipsterDictionary = (function(Window, undefined ){
 		'rugged',
 		'confounded',
 		'timid',
-		'flamboyant'
+		'flamboyant',
+        'disenchanted',
+        'pugnacious'
 	];
 
 	var loadingMessages = [
@@ -29,8 +32,9 @@ var HipsterDictionary = (function(Window, undefined ){
 		'beeeeeeeer...',
         'listening to a band you haven\'t heard of...',
 		'Adding more flannel...',
-        'riding my fixie to get the answer...',
-        'pausing my 8-track...'
+        'riding my fixie...',
+        'pausing my 45...',
+        'lend me your beard...'
 	];
 
 	var partOfSpeech = {
@@ -64,6 +68,7 @@ var HipsterDictionary = (function(Window, undefined ){
 
     var exquisiteAdjectives = [
         'amatory',
+        'americana',
         'bleeding edge',
         'corpulent',
         'comely',
@@ -81,6 +86,7 @@ var HipsterDictionary = (function(Window, undefined ){
         'jocular',
         'luminous',
         'meretricious',
+        'nostalgic',
         'obtuse',
         'pioneering',
         'quiescent',
@@ -106,7 +112,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		'The {hop} hops in my {name} really add to the {cat} , {adjective} flavors.',
 		'{name}: {adjective} artisinal disrupter extraordinaire!',
 		'{hop} hops enhance the matchless aroma and {adjective} essence of this {adjective} {name}.',
-		'I love embibing {name} with my " {pairings} " routine.  The {adjective} notes along with the {malt} malts add incredible mouth feel!',
+		'I love embibing {name} during my " {pairings} " routine.  The {adjective} notes along with the {malt} malts add incredible mouth feel!',
 		'Mucho gusto from the {adjective} {hop} hops in the {name} artfully mingle with the {yeast} yeast to create a uniquely supreme and {adjective} experience.',
 		'Premium nuance from the playful balance of {adjective} hops aroma with the {malt} malt addition make my {name} from Avery a glorious palate pleaser.',
 		'No #FOMO for the #YOLO thanks to Avery and my {name} with the totes killer, {adjective} {cat} flavor!',
@@ -136,13 +142,28 @@ var HipsterDictionary = (function(Window, undefined ){
         'It strikes me as supremely {adjective} that the {noun} in the {name} even classifies as {cat} . It is obviously far more {adjective}',
         'I think Ayn Rand once said that this {name} is {adjective} and that we should all drink it',
         'The {noun} paired with " {pairings} " really rounds out the {hop} hops and {yeast} yeasts in the Avery {name}',
+        'I took the {name} with me on my " {pairings} " trip and the {yeast} yeasts really got me going',
+        'If I\'m not mistaken, I believe the {hop} hops in this {name} were grown by {adjective} monks in the Himalayas.',
+        'The {malt} malts in this {name} has the perfect translucence for my vintage Polaroid selfies',
+        'The {adjective} {noun} in my {name} really reminds me of this one foreign film I watched',
+        'Avery\'s {name} used {malt} malts, {yeast} yeasts and {noun}s before the were even popular',
+        'The iridesent {yeast} yeasts in the {name} provide a truly {adjective} olfactory to cranial experience',
+        'The drinkability of this {name} is optimal when the {noun} {hop} hops are at the beginning of their season',
+        'These {adjective} {malt} malts in my {name} are so {adjective} that they really make my beard glisten',
+        'The {adjective} crafting of the {noun} and {noun} in this {adjective} {name} is truly {adjective}',
+        'A {cat} style beer like this {name} was invented by {adjective} tiger tamers in Eastern Indiana',
+        'The {yeast} yeast goes through a {adjective} process that is authentic to the {name}',
+        'The artful collaboration of {noun}\'s {malt} malts and the {adjective} {nouns} is really a comment on society',
+        '{names}\'s {yeast} yeasts and {adjective} {hops} provide a whistfully {adjective} exposure to the {cat} beers',
+        'Knowing the {adjective} relationship the brewer has with the {malt} malts makes me feel like I\'m really connecting with the {name}',
 	];
 
 	function sentencePolisher(template) {
 		//Insert Beer Name
 		var beerName = beerObject.name;
+		abbreviatedBeerName = beerName.replace('The ', '');
 		if(template.indexOf('{name}') > 0) {
-			beerName = beerName.replace('The ', '');
+			beerName = abbreviatedBeerName;
 		}
 		template = template.replace('{name}', beerName);
 
@@ -327,7 +348,7 @@ var HipsterDictionary = (function(Window, undefined ){
 			var descrip = generateDescription();
 			beerElements.description.text(descrip);
 			var authorDesc = shuffle(authorAdjectives).pop();
-			beerElements.author.text('~ A ' + authorDesc + ' ' + beerObject.name + " drinker")
+			beerElements.author.text('~ A ' + authorDesc + ' ' + abbreviatedBeerName + " drinker")
 			generateTwitterButton(descrip);
 
 			removeMask(beerElements.description);
@@ -345,15 +366,18 @@ var HipsterDictionary = (function(Window, undefined ){
 	function populatePageAssets(data)
 	{
 		beerObject = data.beer;
+		
 		beerElements.beerName.text(beerObject.name);
 		beerElements.beerLabel.attr('src', beerObject.label_image.original);
 		beerElements.beerStyle.text(beerObject.style);
 		beerElements.abv.text(beerObject.abv);
 
+		abbreviatedBeerName = beerObject.name.replace('The ', '');
+
 		var descrip = generateDescription();
 		beerElements.description.text(descrip);
 		var authorDesc = shuffle(authorAdjectives).pop();
-		beerElements.author.text('~ A ' + authorDesc + ' ' + beerObject.name + " drinker")
+		beerElements.author.text('~ A ' + authorDesc + ' ' + abbreviatedBeerName + " drinker")
 
 		generateTwitterButton(descrip);
 
