@@ -31,6 +31,12 @@ block content
 
 			div#tweetButtonHolder.lower-button-holder
 
+			nav
+				ul
+					each beer in beers
+						li
+							a(href="/stache/" + beer.id)= beer.name
+
 block pagescripts
 	script(src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js")
 	script(src="/scripts/twitter-button.js")
