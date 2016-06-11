@@ -106,7 +106,11 @@ var HipsterDictionary = (function(Window, undefined ){
 
 	function sentencePolisher(template) {
 		//Insert Beer Name
-		template = template.replace('{name}', beerObject.name);
+		var beerName = beerObject.name;
+		if(template.indexOf('{name}') > 0) {
+			beerName = beerName.replace('The ', '');
+		}
+		template = template.replace('{name}', beerName);
 
 		//Populate Adjectives
 
@@ -119,6 +123,8 @@ var HipsterDictionary = (function(Window, undefined ){
 			}
 		}
 
+		exquisiteAdjectives = shuffle(exquisiteAdjectives).slice(-5);
+		debugger;
 		adjectiveList = adjectiveList.concat(exquisiteAdjectives);
 		adjectiveList = shuffle(adjectiveList);
 
