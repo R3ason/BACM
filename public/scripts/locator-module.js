@@ -3,6 +3,7 @@
 	};
 
 	Locator.prototype = {
+		MILES:10,
 		init:function(){
 			this.getLocation();
 
@@ -13,14 +14,26 @@
 
 			if(!!position){
 				var coords = [position.coords.latitude, position.coords.longitude],
-					zoom = 15,
+					zoom = 14,
+					metersPerMile = 1609.34,
+					radius = (this.MILES * metersPerMile) / 2, // 25 miles
 					map = L.map('map').setView(coords, zoom);
 
+				//add map
 				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-					attribution: ''
+					attribution: '',
+					maxZoom: 18
 				}).addTo(map);
-
+				// add "you're here marker"
 				L.marker(coords).addTo(map);
+
+				// radius
+				// var circle = L.circle(coords, radius, {
+				// 	color: 'red',
+				// 	fillColor: '#f03',
+				// 	fillOpacity: 0.05, 
+				// 	weight:1
+				// }).addTo(map);
 
 				this.map = map;
 			}
@@ -29,7 +42,7 @@
 		findBeer:function(position){
 			console.log('finding beer...');
 			var base = 'http://apis.mondorobot.com/beer-finder',
-				distance = 25,
+				distance = this.MILES,
 				//TODO: get from query string
 				beer = 'ipa';
 			
@@ -43,10 +56,8 @@
 				},
 				url:base
 			}).then(function(response){
-				console.log(response.results);
 				var locator = this;
 				$.each(response.results,function(i, result){
-					console.log(result);
 					locator.geocodeAddr(result.address);
 				});
 			});
@@ -61,7 +72,7 @@
 			console.log('geocoding ' + addr + '...');
 
 			$.getJSON(url)
-				.then($.proxy(this.plotLocation,this));
+				.then($.proxy(this.plotLocation, this));
 		},
 
 		plotLocation:function(response){
