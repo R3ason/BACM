@@ -21,7 +21,9 @@ var locatorController = {
 				}
 				else{
 					res.render('locator', { 
-						allbeer: allbeer
+						allbeer: allbeer,
+						beer:beer,
+						id:id
 					});
 				}
 			}
