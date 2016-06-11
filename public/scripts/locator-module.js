@@ -32,7 +32,7 @@
 					attribution: '',
 					maxZoom: 18
 				}).addTo(map);
-				// add "you're here marker"
+				// add "you are here" marker
 				L.marker(coords).addTo(map);
 
 				// radius
@@ -64,9 +64,21 @@
 				distance = distance || this.MILES,
 				maxDistance = 100,
 				//TODO: get from query string
-				beer = $('#map').data('beer');
+				beer = $('#map').data('beer'),
+				$list = $('#locations-list');
 			
 			if(!beer){
+				$list
+					.append('<div id="no-beer-found"></div>');
+
+				var $otherBeers = $('<ul>').append($.map(locator.beersById,function(b,i){
+					return '<li><a href="/locator/' + b.id  + '">' + b.name + '</a> <small>('+ b.abv +'% abv)</small></li>';
+				}).join(''));
+
+				$('#no-beer-found')
+					.append($otherBeers)
+
+				$('body').removeClass('loading');
 				return;
 			}
 
@@ -83,8 +95,7 @@
 				},
 				success:function(response, textStatus, xhr){
 				
-					var locator = this,
-						$list = $('#locations-list');
+					var locator = this;;
 
 					if(!!response.results.length){
 						$('#no-beer-found').remove();

@@ -35,7 +35,8 @@ var HipsterDictionary = (function(Window, undefined ){
         'riding my fixie...',
         'pausing my 45...',
         'lend me your beard...',
-		'locating the closest hipster...'
+		'locating the closest hipster...',
+		'dry-hopping your beer...'
 	];
 
 	var partOfSpeech = {
@@ -132,31 +133,31 @@ var HipsterDictionary = (function(Window, undefined ){
         'You literally can\'t find another {cat} beer like {name} anywhere.',
         'The {hop} hops and {adjective} taste make {name} so {adjective} that it will leave you speechless',
         'The {adjective} method Avery uses the {hop} hops in the {name} truly makes it a game changer',
-        'Avery\'s {name} completely revolutionizes the {cat} category.',
+        'Avery\'s {name} completely revolutionizes the " {cat} " category.',
         '{name}\'s {adjective} use of the aromatic {hop} hops to balance out the {adjective} yeast results in a {adjective} beer you can bring to your mother',
         'I have never seen the {yeast} ferment the way it does in the {name}. It is truly a {adjective} specimen',
-        'The Avery {name} is the most important {cat} of the decade',
+        'The Avery {name} is the most important {cat} beer of the decade',
         'I often use the {adjective} {name} to lighten up before heading out and krumping for the evening',
         'It\'s so ironic that the {hop} hops and the {yeast} yeast in the {name} come together in such a {adjective} way.',
         'This {name} goes really well with " {pairings} "',
         'I\'ve associated {name} with " {pairings} " since before " {pairings} " was even a thing',
         'It strikes me as supremely {adjective} that the {noun} in the {name} even classifies as {cat} . It is obviously far more {adjective}',
-        'I think Ayn Rand once said that this {name} is {adjective} and that we should all drink it',
+        'I think Ayn Rand once said that this {name} is " {adjective} " and that we should all drink it',
         'The {noun} paired with " {pairings} " really rounds out the {hop} hops and {yeast} yeasts in the Avery {name}',
         'I took the {name} with me on my " {pairings} " trip and the {yeast} yeasts really got me going',
         'If I\'m not mistaken, I believe the {hop} hops in this {name} were grown by {adjective} monks in the Himalayas.',
-        'The {malt} malts in this {name} has the perfect translucence for my vintage Polaroid selfies',
+        'The {malt} malt in this {name} has the perfect translucence for my vintage Polaroid selfies',
         'The {adjective} {noun} in my {name} really reminds me of this one foreign film I watched',
-        'Avery\'s {name} used {malt} malts, {yeast} yeasts and {noun} s before the were even popular',
+        'Avery\'s {name} used {malt} malt, {yeast} yeasts and a {noun} before they were even popular',
         'The iridesent {yeast} yeasts in the {name} provide a truly {adjective} olfactory to cranial experience',
         'The drinkability of this {name} is optimal when the {noun} {hop} hops are at the beginning of their season',
-        'These {adjective} {malt} malts in my {name} are so {adjective} that they really make my beard glisten',
+        'These {adjective} {malt} malt in my {name} are so {adjective} that they really make my beard glisten',
         'The {adjective} crafting of the {noun} and {noun} in this {adjective} {name} is truly {adjective}',
         'A {cat} style beer like this {name} was invented by {adjective} tiger tamers in Eastern Indiana',
         'The {yeast} yeast goes through a {adjective} process that is authentic to the {name}',
-        'The artful collaboration of {noun} \'s {malt} malts and the {adjective} {noun} is really a comment on society',
+        'The artful collaboration of {noun} \'s {malt} malt and the {adjective} {noun} is really a comment on society',
         '{name} \'s {yeast} yeast and {adjective} {hops} provide a whistfully {adjective} exposure to the {cat} beers',
-        'Knowing the {adjective} relationship the brewer has with the {malt} malts makes me feel like I\'m really connecting with the {name}',
+        'Knowing the {adjective} relationship the brewer has with the {malt} malt makes me feel like I\'m really connecting with the {name}',
 	];
 
 	function sentencePolisher(template) {
@@ -432,7 +433,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		if(beerObject.related_beers) {
 			var relatedBeers = beerObject.related_beers;
 			for(var i = 0; i < relatedBeers.length; i++) {
-				var listItem = $('<li><a href="javascript:void(0);" data-id="' + relatedBeers[i].id + '">' + relatedBeers[i].name + '</a></li>');
+				var listItem = $('<li><a href="' + relatedBeers[i].id + '">' + relatedBeers[i].name + '</a></li>');
 				beerElements.relatedLinksList.append(listItem.clone());
 			}
 		}

@@ -5,8 +5,14 @@ block pagestyles
 	link(rel="stylesheet", href="../styles/stache.css")
 
 block content
-	a(href="http://www.averybrewery.com")
+	a(href="http://www.averybrewing.com" target="_new")
 		img.top-logo(src="/images/avery-tab.svg", alt="Avery Brewery logo")
+	nav
+		div
+			ul
+				each beer in beers
+					li
+						a(href="/stache/" + beer.id)= beer.name
 	section.card.clearfix
 		div.loader AVERY IS THE BEST
 
