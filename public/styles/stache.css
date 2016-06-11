@@ -15,6 +15,12 @@
 	z-index: 99;
 }
 
+.label-and-info {
+	padding-top: 150px;
+	width: 30%;
+	height: 20%;
+}
+
 .beer-label{
 	z-index: 10;
 	display: block;
@@ -29,7 +35,21 @@
 	left: 0;
 	right: 0;
 	margin: auto;
-	width: 165px;
+	width: 200px;
+}
+
+div.form-group p.select-label {
+	color: rgb(220, 220, 220);
+}
+
+.beers-holder {
+	padding-top: 18px;
+	padding-right: 40px;
+}
+
+.all-beers {
+	background-color: rgba(255, 255, 255, 0);
+    color: rgb(220, 220, 220);
 }
 
 .beer-info {
@@ -52,12 +72,6 @@
 	font-family: "EB+Garamond";
 	color: rgb(240, 240, 240);
 	font-size: 14px;
-}
-
-.label-and-info {
-	padding-top: 140px;
-	width: 30%;
-	height: 20%;
 }
 
 .stache {
@@ -96,8 +110,13 @@ ul.relatedBeers li {
 	width: 32%;
 }
 
-ul.relatedBeers li:first-child{ border-right: 1px solid beige; }
-ul.relatedBeers li:last-child{ border-left: 1px solid beige; }
+ul.relatedBeers li:first-child { 
+	border-right: 1px solid rgb(160, 135, 105);
+}
+
+ul.relatedBeers li:last-child {
+	border-left: 1px solid rgb(160, 135, 105);
+}
 
 ul.relatedBeers li a {
 	color: rgb(240, 240, 240);
@@ -123,7 +142,7 @@ ul.relatedBeers li a {
 		padding-top: 0;
 		width: inherit;
 	}
-} 
+}
 
 /* Portrait and Landscape */
 @media only screen 
@@ -240,10 +259,7 @@ ul.relatedBeers li a {
 	}
 }
 
-
-
-
-
-
-
-
+.suggest-prompt {
+	font-size: 16px;
+	color: rgb(195, 195, 195);
+}
