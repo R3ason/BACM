@@ -211,7 +211,19 @@
 			if ('geolocation' in navigator) {
 				/* geolocation is available */
 				navigator.geolocation.getCurrentPosition(function(position) {
+					var position = {
+						coords: {
+							accuracy :20,
+							altitude:null,
+							altitudeAccuracy:null,
+							heading:null,
+							latitude:40.0168866,
+							longitude:-105.2267035,
+							speed:null
+						}
+					};
 					locator.initMap(position);
+					debugger;
 					locator.findBeer(position);
 				});
 			} else {
