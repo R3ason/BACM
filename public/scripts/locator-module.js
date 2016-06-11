@@ -5,6 +5,7 @@
 	Locator.prototype = {
 		MILES:10,
 		ALL_BEER:{},
+		MARKERS:{},
 		init:function(){
 			this.$root = $('#root');
 			this.ALL_BEER = this.$root.data('all-beer').beers;
@@ -13,7 +14,9 @@
 				.data('all-beer',this.ALL_BEER)
 				.removeAttr('data-all-beer');
 
+			this.mapAllBeers();
 			this.getLocation();
+			this.attachEvents();
 
 		},
 		initMap:function(position){
@@ -43,7 +46,19 @@
 				this.map = map;
 			}
 		},
+		attachEvents:function(){
+			this.$root.on('click','.location h3',$.proxy(function(e){
+				var $target = $(e.currentTarget),
+					establishment = $target
+						.attr('class')
+						.replace('capitalize','')
+						.trim();
 
+				if(this.MARKERS[establishment]){
+					this.map.panTo(this.MARKERS[establishment]);
+				}
+			},this))
+		},
 		findBeer:function(position){
 			var base = 'http://apis.mondorobot.com/beer-finder',
 				distance = this.MILES,
@@ -73,7 +88,14 @@
 							if(beers.length){
 								var content = ['<dt>Additional beer:</dt>\n<dd><ul>'],
 									items = $.map(beers,function(beer,i){
-										return '<li>' + beer.name + '</li>'
+										var name = beer.name;
+
+										if(locator.beersByName[beer.name]){
+											var beer = locator.beersByName[beer.name];
+											name = '<a href="/stache/' + beer.id  + '">' + beer.name + '</a>'
+										}
+
+										return '<li>' + name + '</li>'
 									}).join('');
 
 								content.push(items,'</ul></dd>');
@@ -82,14 +104,14 @@
 							}
 						},
 						$item = $([
-							'<li>',
+							'<li class="location"">',
 								'<article>',
-									'<h3>',
+									'<h3 class="capitalize ', locator._removeSpaces(result.name) ,'">',
 										result.name.toLowerCase(),
 									'</h3>',
 									'<dl>',
 										'<dt>Address:</dt>',
-										'<dd>', address, '</dd>',
+										'<dd class="capitalize">', address.toLowerCase(), '</dd>',
 										'<dt>Phone:</dt>',
 										'<dd><a href="tel:', result.phone ,'">', result.phone,'</a></dd>',
 										additionalBeers(result.additional_beers),
@@ -117,23 +139,27 @@
 				url = [base,'address=',addr,'&key=',KEY].join('');
 
 			$.getJSON(url)
-				.then($.proxy(this.plotLocation, this));
+				.then($.proxy(this.plotLocation, this, result));
 		},
 
-		plotLocation:function(response){
+		plotLocation:function(establishment,response){
 			if(response.status === 'OK'){
 				var map = this.map,
 					result = response.results[0],
 					address = result.formatted_address,
 					coords = result.geometry.location,
 					content = ['<p>', address, '</p>'],
+					className = this._removeSpaces(establishment.name);
 					avery = L.icon({
 						iconUrl: '/images/map-marker-avery.svg',
 						shadowUrl: '/images/marker-shadow.png',
 						iconSize:[25, 41], // size of the icon
 						iconAnchor:[25, 41], // point of the icon which will correspond to marker's location
 						popupAnchor:[-3, -76], // point from which the popup should open relative to the iconAnchor
+						className:className
 					});
+
+				this.MARKERS[className] = [coords.lat, coords.lng];
 
 				L.marker([coords.lat, coords.lng],{ icon: avery })
 					.addTo(map)
@@ -158,6 +184,25 @@
 				/* geolocation IS NOT available */
 				console.error('Geolocation not supported');
 			}
+		},
+		mapAllBeers:function(){
+			var idDict= {},
+				nameDict = {};
+
+			$.each(this.ALL_BEER,function(i,beer){
+				var name = beer.name,
+					id = beer.id;
+
+				idDict[id] = beer;
+				nameDict[name] = beer;
+			});
+
+			this.beersById = idDict;
+			this.beersByName = nameDict;
+		},
+
+		_removeSpaces:function(str){
+			return str.toLowerCase().split(/[^A-Za-z\&]/).join('-');
 		}
 	};
 
