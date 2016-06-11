@@ -7,13 +7,16 @@ block pagestyles
 block content
 	a(href="http://www.averybrewing.com" target="_new")
 		img.top-logo(src="/images/avery-tab.svg", alt="Avery Brewery logo")
-	
-	div.form-group
-		select
-			each beer in beers
-				option
-					a(href="/stache/" + beer.id)= beer.name
 
+	div#allBeers.dropdown.beers-holder.pull-right
+		button.all-beers.btn.btn-default.dropdown-toggle(type="button", id="dropdownMenu1", data-toggle="dropdown", aria-haspopup="true", aria-expanded="true")
+			| Try one of our other tasty beers!
+			span.caret
+		ul.dropdown-menu(aria-labelledby="dropdownMenu4")
+			each beer in beers
+				li
+					a(href="/stache/" + beer.id)= beer.name
+	
 	section.card.clearfix
 		div.loader AVERY IS THE BEST
 
@@ -38,14 +41,11 @@ block content
 			div#tweetButtonHolder.lower-button-holder
 
 			nav.clearfix
-				p Like what you see? Try a different beer!
+				p.suggest-prompt Similar beers you may also like...
 				ul.relatedBeers.clearfix
 
-	div.overlay
 block footer
 
 block pagescripts
-	script(src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js")
 	script(src="/scripts/twitter-button.js")
 	script(src="/scripts/hipster-library.js")
-	script(src="/scripts/stache-module.js")

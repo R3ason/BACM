@@ -372,8 +372,8 @@ var HipsterDictionary = (function(Window, undefined ){
 		
 		beerElements.beerName.text(beerObject.name);
 		beerElements.beerLabel.attr('src', beerObject.label_image.original);
-		beerElements.beerStyle.text(beerObject.style);
-		beerElements.abv.text(beerObject.abv);
+		beerElements.beerStyle.text(beerObject.style || "--");
+		beerElements.abv.text(beerObject.abv || "--");
 
 		abbreviatedBeerName = beerObject.name.replace('The ', '');
 
