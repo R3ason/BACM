@@ -4,4 +4,4 @@ var stacheController = {
 	}
 }
 
-module.exports= stacheController;
+module.exports = stacheController;

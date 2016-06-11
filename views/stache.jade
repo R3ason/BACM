@@ -1,7 +1,8 @@
 extends layout
 
-h1.beerName IPA
-
+block content
+	h1.beerName IPA
+	
 	section
 		img.beerLabel
 		ul.beerInfo
@@ -11,6 +12,6 @@ h1.beerName IPA
 		article.description  We will replace this with nonsense.
 
 
-	block pagescripts
-		script(src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js")
-		script(src="../scripts/locator-module.js")
+block pagescripts
+	script(src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js")
+	script(src="../scripts/locator-module.js")

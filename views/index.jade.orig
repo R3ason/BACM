@@ -1,7 +1,0 @@
-extends layout
-
-block content
-	h1 Hello Beer
-
-block pagescripts
-	script(src="/scripts/stuff.js")
