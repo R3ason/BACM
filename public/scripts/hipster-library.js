@@ -393,7 +393,7 @@ var HipsterDictionary = (function(Window, undefined ){
 			$('.card').children().each(function(v, i) {
 				$(this).hide();
 			})
-			$('.container-fluid').append('<div class="hipster-text all-error">That\s a whole lotta plaid... Why don\'t you pick a beer from the menu on the right?</div>');
+			$('.container-fluid').append('<div class="hipster-text all-error">That\'s a whole lotta plaid... Why don\'t you pick a beer from the menu on the right?</div>');
 
 		}
 			setTimeout(function() {
