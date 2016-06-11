@@ -7,6 +7,10 @@ ul{
 	padding:0;
 }
 
+article{
+	border-radius: 3px;
+}
+
 article > section{
 	background:rgba(255,255,255,0.95);
 }
@@ -26,7 +30,22 @@ article > section{
 }
 
 #locations-list h3{
-	text-transform: capitalize;
+	cursor: pointer;
+}
+
+#locations-list h3:before{
+	background:url('/images/map-marker-avery.svg');
+	content: " ";
+	height: 26px;
+	speak: none;
+	width: 19px;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 5px;
+}
+
+.capitalize{
+	text-transform: capitalize !important;
 }
 
 #locations-list article li{
@@ -35,10 +54,12 @@ article > section{
 
 #locations-list article li:after{
 	content:", ";
+	speak:none;
 }
 
 #locations-list article li:last-child:after{
 	content:"";
+	speak:none;
 }
 
 .loading:after{
@@ -48,6 +69,7 @@ article > section{
 	background-repeat: no-repeat;
 	color: transparent;
 	content:"";
+	speak:none;
 	height: 100%;
 	position: absolute;
 	opacity: .75;

@@ -5,7 +5,6 @@ block pagestyles
 	link(rel="stylesheet", href="../styles/stache.css")
 
 block content
-	div.overlay
 	a(href="http://www.averybrewery.com")
 		img.top-logo(src="/images/avery-tab.svg", alt="Avery Brewery logo")
 	section.card.clearfix
@@ -31,20 +30,22 @@ block content
 
 			div#tweetButtonHolder.lower-button-holder
 
-		div.nav
-			ul.list-inline
-				li
-					a(href="~/stache/ipa") IPA
-				li
-					a(href="~/stache/raja") Raja
-				li
-					a(href="~/stache/ipa") IPA
-				li
-					a(href="~/stache/ipa") IPA
-				li
-					a(href="~/stache/ipa") IPA
-				li
-					a(href="~/stache/ipa") IPA
+	div.nav
+		ul.list-inline
+			li
+				a(href="~/stache/ipa") IPA
+			li
+				a(href="~/stache/raja") Raja
+			li
+				a(href="~/stache/ipa") IPA
+			li
+				a(href="~/stache/ipa") IPA
+			li
+				a(href="~/stache/ipa") IPA
+			li
+				a(href="~/stache/ipa") IPA
+
+	div.overlay
 
 block pagescripts
 	script(src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js")
