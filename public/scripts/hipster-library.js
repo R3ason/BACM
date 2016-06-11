@@ -7,6 +7,7 @@ var HipsterDictionary = (function(Window, undefined ){
 	var rootElement;
 	var beerElements = {};
 	var beerObject = {};
+	var twitterHashtag = ' #AveryBeerstache';
 
 	var loadingMessages = [
 		'consulting hipsters...',
@@ -95,7 +96,7 @@ var HipsterDictionary = (function(Window, undefined ){
 	var templates = [
 		'This {name} is so {adjective}',
 		'The {adjective} qualities of this {name} make it totally {adjective}',
-		'The {hop} hops in my {name} really add to the {cat}, {adjective} flavors.',
+		'The {hop} hops in my {name} really add to the {cat} , {adjective} flavors.',
 		'{name}: {adjective} artisinal disrupter extraordinaire!',
 		'{hop} hops enhance the matchless aroma and {adjective} essence.',
 		'I love embibing {name} with my " {pairings} " routine.  The {adjective} notes along with the {malt} adds incredible mouth feel!',
@@ -311,9 +312,8 @@ var HipsterDictionary = (function(Window, undefined ){
 			var descrip = generateDescription();
 			beerElements.description.text(descrip);
 
-			var baseHref = beerElements.tweetButton.attr("href");
-			console.log(baseHref);
-			beerElements.tweetButton.attr("href", baseHref + descrip);
+			generateTwitterButton(descrip);
+
 			removeMask(beerElements.description);
 		}, 1500);
 	}
@@ -337,20 +337,28 @@ var HipsterDictionary = (function(Window, undefined ){
 		var descrip = generateDescription();
 		beerElements.description.text(descrip);
 
-		var link = document.createElement('a');
-		link.setAttribute('href', "https://twitter.com/intent/tweet?url=/&hashtags=AveryBeerstache&text=" + descrip);
-		link.setAttribute('class', 'twitter-share-button');
-		link.setAttribute('style', 'margin-top:5px;');
-		link.setAttribute("data-size" ,"large");
-		link.setAttribute("data-related" ,"AveryBrewingCo,Mondo_Robot");
-		link.setAttribute("data-hastags", "AveryBeerstache");
-		beerElements.stache.append(link);
-		twttr.widgets.load();  //very important
+		//descrip = descrip.substr(0, 140 - twitterHashtag - 3) + '...';
+
+		generateTwitterButton(descrip);
 
 		setTimeout(function() {
 			beerElements.loadingDiv.hide();
 		}, 1500);
 		
+	}
+
+	function generateTwitterButton(descrip) {
+		$('iframe').remove();
+		var link = document.createElement('a');
+		link.setAttribute('href', "https://twitter.com/intent/tweet?url=/&hashtags=AveryBeerstache");
+		link.setAttribute('class', 'twitter-share-button');
+		link.setAttribute('style', 'margin-top:5px;');
+		link.setAttribute("data-size" ,"large");
+		link.setAttribute('data-text', descrip);
+		link.setAttribute("data-related" ,"AveryBrewingCo,Mondo_Robot");
+		link.setAttribute("data-hastags", "AveryBeerstache");
+		beerElements.stache.append(link);
+		twttr.widgets.load();  //very important
 	}
 
 	function shuffle(array) {
