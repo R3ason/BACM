@@ -6,6 +6,7 @@ var HipsterDictionary = (function(Window, undefined ){
     var beerApiUrl = 'http://apis.mondorobot.com/beers/';
     var rootElement;
     var beerElements = {};
+    var beerObject = {};
     
     var partOfSpeech = {
         "noun": [
@@ -25,9 +26,9 @@ var HipsterDictionary = (function(Window, undefined ){
         "The {adjective} qualities of this {name} make it totally {adjective}"
     ];
 
-    function sentencePolisher(template, beerProperties) {
+    function sentencePolisher(template) {
         //Insert Beer Name
-        template = template.replace('{name}', beerProperties.name);
+        template = template.replace('{name}', beerObject.name);
 
         //Populate Adjectives
 
@@ -38,15 +39,11 @@ var HipsterDictionary = (function(Window, undefined ){
         return template;
     }
 
-    function generateDescription(sBeerId) {
+    function generateDescription() {
         var tCount = templates.length;
         var templateIndex = Math.floor(Math.random() * tCount) + 1;
         var selectedTemplate = templates[templateIndex - 1];
-        var beerProperties = {
-            id:"ipa",
-            name: "IPA"
-        };
-        var finalSentence = sentencePolisher(selectedTemplate, beerProperties)
+        var finalSentence = sentencePolisher(selectedTemplate)
         return finalSentence;
     };
 
@@ -79,12 +76,13 @@ var HipsterDictionary = (function(Window, undefined ){
 
     function populatePageAssets(data)
     {
-        var beer = data.beer;
-        beerElements.beerName.text(beer.name);
-        beerElements.beerLabel.attr('src', beer.label_image.original);
-        beerElements.beerStyle.text(beer.style);
-        beerElements.abv.text(beer.abv);
-        beerElements.description.text(beer.description);
+        beerObject = data.beer;
+        beerElements.beerName.text(beerObject.name);
+        beerElements.beerLabel.attr('src', beerObject.label_image.original);
+        beerElements.beerStyle.text(beerObject.style);
+        beerElements.abv.text(beerObject.abv);
+        beerElements.description.text(generateDescription());
+        
     }
     return {
         GenerateDescription: generateDescription,
