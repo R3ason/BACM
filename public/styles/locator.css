@@ -13,6 +13,13 @@ article{
 
 article > section{
 	background:rgba(255,255,255,0.95);
+	height: 500px;
+	overflow: auto;
+	margin-bottom:20px;
+}
+
+article > section > *{
+	overflow: auto;
 }
 
 .brand-container {
@@ -27,16 +34,15 @@ article > section{
     min-width: 111px;
 }
 
-.map-and-info {
-	padding-top: 90px
-}
-
 #map {
 	/*height: 700px;*/
-	height: 500px;
+	height: 100%;
 	width:100%;
 }
-
+#no-beer-found{
+	overflow: auto;
+	padding-bottom: 10px;
+}
 #no-beer-found p{
 	font-size: 18px;
 	padding: 10px 0;
@@ -52,7 +58,8 @@ article > section{
 	overflow: auto;
 }
 
-#locations-list > li{
+#locations-list > li,
+#no-beer-found ul > li{
 	list-style: none;
 }
 

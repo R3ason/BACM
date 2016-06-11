@@ -3,7 +3,8 @@
     "body-parser": "^1",
     "express": "^4",
     "jade": "^1",
-    "parse-json": "^2.2.0"
+    "parse-json": "^2.2.0",
+    "request": "^2.72.0"
   },
   "devDependencies": {},
   "name": "barrel-aged-code-monkeys",
