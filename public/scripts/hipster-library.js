@@ -304,7 +304,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		addMask(beerElements.description);
 		setTimeout(function(){
 			var descrip = generateDescription();
-			beerElements.description.text(description);
+			beerElements.description.text(descrip);
 
 			generateTwitterButton(descrip);
 
@@ -355,8 +355,24 @@ var HipsterDictionary = (function(Window, undefined ){
 		link.setAttribute("data-related" ,"AveryBrewingCo,Mondo_Robot");
 		link.setAttribute("data-hastags", "AveryBeerstache");
 		beerElements.tweetButtonHolder.append(link);
-
-        twttr.widgets.load();  //very important
+		
+		try {
+			twttr.widgets.load();  //very important
+		}
+		catch(err) {
+			console.log('Twitter is taking longer than normal to load...');
+			var count = 0;
+			var retry = setInterval(function() {
+				count++;
+				try {
+					twttr.widgets.load();
+				}
+				catch(err) { }
+				if(count > 5) {
+					clearInterval(retry);
+				}
+			}, 250);
+		}
 	}
 
 	function shuffle(array) {
