@@ -3,6 +3,11 @@
 
 var HipsterDictionary = (function(Window, undefined ){
 
+    var beerApiUrl = 'http://apis.mondorobot.com/beers/';
+    var rootElement;
+    var beerElements = {};
+    var beerObject = {};
+    
     var partOfSpeech = {
         "noun": [
             'hop_varieties',
@@ -18,26 +23,72 @@ var HipsterDictionary = (function(Window, undefined ){
 
     var templates = [
         "This {name} is so {adjective}",
-        "The {adjective} qualities of this beer make it totally {adjective}"
+        "The {adjective} qualities of this {name} make it totally {adjective}"
     ];
 
-    function sentencePolisher(template, beerProperties) {
+    function sentencePolisher(template) {
+        //Insert Beer Name
+        template = template.replace('{name}', beerObject.name);
+
+        //Populate Adjectives
+
+        //Build Adjective List
+        var adjectiveList = [];
+        //for(var i = 0; i < )
+        template = template;
         return template;
     }
 
-    function generateDescription(sBeerId) {
+    function generateDescription() {
         var tCount = templates.length;
         var templateIndex = Math.floor(Math.random() * tCount) + 1;
         var selectedTemplate = templates[templateIndex - 1];
-        var beerProperties = {
-            id:"ipa"
-        };
-        var sentence = sentencePolisher(selectedTemplate, beerProperties)
-        return templates[templateIndex - 1];
+        var finalSentence = sentencePolisher(selectedTemplate)
+        return finalSentence;
     };
 
+    function init()
+    {
+        cacheElements();
+        var href = window.location.href;
+        var beerId = href.substr(href.lastIndexOf('/') + 1);
+        callBeerApi(beerId, populatePageAssets);
+    }
+    
+    function cacheElements() {
+        rootElement = $('.card');
+        beerElements.beerName = rootElement.find('#BeerName');
+        beerElements.beerLabel = rootElement.find('#BeerLabel');
+        beerElements.beerStyle = rootElement.find('#BeerStyle');
+        beerElements.abv = rootElement.find('#ABV');
+        beerElements.description = rootElement.find('#Description');
+        beerElements.location = rootElement.find('#Location');
+    }
+
+    function callBeerApi(beerId, callback) {
+        $.ajax({
+            method: "get",
+            url: beerApiUrl + beerId,
+            dataType: "json"
+        })
+        .done(callback);
+    }
+
+    function populatePageAssets(data)
+    {
+        beerObject = data.beer;
+        beerElements.beerName.text(beerObject.name);
+        beerElements.beerLabel.attr('src', beerObject.label_image.original);
+        beerElements.beerStyle.text(beerObject.style);
+        beerElements.abv.text(beerObject.abv);
+        beerElements.description.text(generateDescription());
+        
+    }
     return {
-        GenerateDescription: generateDescription
+        GenerateDescription: generateDescription,
+        Init: init
     };
 })(window);
+
+HipsterDictionary.Init();
 
