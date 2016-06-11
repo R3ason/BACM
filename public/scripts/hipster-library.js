@@ -46,6 +46,50 @@ var HipsterDictionary = (function(Window, undefined ){
 		]
 	};
 
+    var exquisiteAdjectives = {
+        "amatory",
+        "boorish",
+        "bleeding edge",
+        "calamitous",
+        'corpulent',
+        "comely",
+        "defematory",
+        "dilatory",
+        "dowdy",
+        "efficacious",
+        "egregious",
+        "epic",
+        "equanimous",
+        "exclusive",
+        "fulsome",
+        "freemium",
+        "groundbreaking",
+        "gustatory",
+        "heuristic",
+        "hubristic",
+        "joculuar",
+        "luminous",
+        "meretricious",
+        "noxious",
+        "obtuse",
+        "petulant",
+        "pioneering",
+        "quiescent",
+        "redolent",
+        "revolutionary",
+        "ruminative",
+        "sartorial",
+        "sticky",
+        "synergistic"
+        "turbulent",
+        "verdant",
+        "voracious",
+        "wheedling",
+        "unbelievable",
+        "unique",
+        "zealous",
+    }
+
 	var templates = [
 		'This {name} is so {adjective}',
 		'The {adjective} qualities of this {name} make it totally {adjective}',
@@ -204,7 +248,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		beerElements.description = rootElement.find('#Description');
 		beerElements.location = rootElement.find('#Location');
 		beerElements.updateDescriptionLink = rootElement.find('a');
-		beerElements.loadingDiv = rootElement.find('div.loader');
+		beerElements.loadingDiv = $('div.loader');
 	}
 
 	function bindElements() {
