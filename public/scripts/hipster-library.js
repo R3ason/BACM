@@ -191,33 +191,37 @@ var HipsterDictionary = (function(Window, undefined ){
 
 		var templateArray = template.split(" ");
 		//Todo [Ben]: popping WILL break this if there are more instances than in the array!!!
-		for (var i = 0; i < templateArray.length; i++) {
-			var currentItem = templateArray[i];
-				switch(templateArray[i]) {
-					case '{adjective}':
-						templateArray[i] = adjectiveList.pop().toLowerCase();
-						break;
-					case '{noun}':
-						templateArray[i] = nounList.pop().toLowerCase();
-						break;
-					case '{hop}':
-						templateArray[i] = hopList.pop().toLowerCase();
-						break;
-					case '{pairings}':
-						templateArray[i] = pairingList.pop().toLowerCase();
-						break;
-					case '{cat}':
-						templateArray[i] = categoryList.pop().toLowerCase();
-						break;
-					case '{yeast}':
-						templateArray[i] = yeastList.pop();
-						break;
-					case '{malt}':
-						templateArray[i] = maltList.pop();
-				}
-		}
+		try {
+			for (var i = 0; i < templateArray.length; i++) {
+				var currentItem = templateArray[i];
+					switch(templateArray[i]) {
+						case '{adjective}':
+							templateArray[i] = adjectiveList.pop().toLowerCase();
+							break;
+						case '{noun}':
+							templateArray[i] = nounList.pop().toLowerCase();
+							break;
+						case '{hop}':
+							templateArray[i] = hopList.pop().toLowerCase();
+							break;
+						case '{pairings}':
+							templateArray[i] = pairingList.pop().toLowerCase();
+							break;
+						case '{cat}':
+							templateArray[i] = categoryList.pop().toLowerCase();
+							break;
+						case '{yeast}':
+							templateArray[i] = yeastList.pop();
+							break;
+						case '{malt}':
+							templateArray[i] = maltList.pop();
+					}
+			}
 
-		template = templateArray.join(' ').replace(' ,', ',');
+			template = templateArray.join(' ').replace(' ,', ',');
+		} catch(err) {
+			template = 'Good sir, you have confounded me and left me speechless. Enjoy your ' + beerObject.name;
+		}
 
 		return template;
 	}
