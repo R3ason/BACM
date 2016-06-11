@@ -7,6 +7,7 @@ var HipsterDictionary = (function(Window, undefined ){
 	var rootElement;
 	var beerElements = {};
 	var beerObject = {};
+	var twitterHashtag = ' #AveryBeerstache';
 
 	var loadingMessages = [
 		'consulting hipsters...',
@@ -95,7 +96,7 @@ var HipsterDictionary = (function(Window, undefined ){
 	var templates = [
 		'This {name} is so {adjective}',
 		'The {adjective} qualities of this {name} make it totally {adjective}',
-		'The {hop} hops in my {name} really add to the {cat}, {adjective} flavors.',
+		'The {hop} hops in my {name} really add to the {cat} , {adjective} flavors.',
 		'{name}: {adjective} artisinal disrupter extraordinaire!',
 		'{hop} hops enhance the matchless aroma and {adjective} essence.',
 		'I love embibing {name} with my " {pairings} " routine.  The {adjective} notes along with the {malt} adds incredible mouth feel!',
@@ -126,7 +127,11 @@ var HipsterDictionary = (function(Window, undefined ){
 
 	function sentencePolisher(template) {
 		//Insert Beer Name
-		template = template.replace('{name}', beerObject.name);
+		var beerName = beerObject.name;
+		if(template.indexOf('{name}') > 0) {
+			beerName = beerName.replace('The ', '');
+		}
+		template = template.replace('{name}', beerName);
 
 		//Populate Adjectives
 
@@ -138,6 +143,8 @@ var HipsterDictionary = (function(Window, undefined ){
 				adjectiveList = adjectiveList.concat(category);
 			}
 		}
+
+		exquisiteAdjectives = shuffle(exquisiteAdjectives).slice(-5);
 
 		adjectiveList = adjectiveList.concat(exquisiteAdjectives);
 		adjectiveList = shuffle(adjectiveList);
@@ -211,33 +218,44 @@ var HipsterDictionary = (function(Window, undefined ){
 
 		var templateArray = template.split(" ");
 		//Todo [Ben]: popping WILL break this if there are more instances than in the array!!!
-		for (var i = 0; i < templateArray.length; i++) {
-			var currentItem = templateArray[i];
-				switch(templateArray[i]) {
-					case '{adjective}':
-						templateArray[i] = adjectiveList.pop().toLowerCase();
-						break;
-					case '{noun}':
-						templateArray[i] = nounList.pop().toLowerCase();
-						break;
-					case '{hop}':
-						templateArray[i] = hopList.pop().toLowerCase();
-						break;
-					case '{pairings}':
-						templateArray[i] = pairingList.pop().toLowerCase();
-						break;
-					case '{cat}':
-						templateArray[i] = categoryList.pop().toLowerCase();
-						break;
-					case '{yeast}':
-						templateArray[i] = yeastList.pop();
-						break;
-					case '{malt}':
-						templateArray[i] = maltList.pop();
-				}
-		}
+		try {
+			for (var i = 0; i < templateArray.length; i++) {
+				var currentItem = templateArray[i];
+					switch(templateArray[i]) {
+						case '{adjective}':
+							templateArray[i] = adjectiveList.pop().toLowerCase();
+							break;
+						case '{noun}':
+							templateArray[i] = nounList.pop().toLowerCase();
+							break;
+						case '{hop}':
+							templateArray[i] = hopList.pop().toLowerCase();
+							break;
+						case '{pairings}':
+							templateArray[i] = pairingList.pop().toLowerCase();
+							break;
+						case '{cat}':
+							templateArray[i] = categoryList.pop().toLowerCase();
+							break;
+						case '{yeast}':
+							templateArray[i] = yeastList.pop();
+							break;
+						case '{malt}':
+							templateArray[i] = maltList.pop();
+					}
+			}
 
-		template = templateArray.join(' ').replace(' ,', ',');
+			template = templateArray.join(' ').replace(' ,', ',');
+
+			// Fix quotes
+			var quote = template.match(/\" (.*)\ "/)
+			if(quote) {
+				quote = quote.pop();
+				template = template.replace('" ' + quote + ' "', '"' + quote + '"');
+			}
+		} catch(err) {
+			template = 'Good sir, you have confounded me and left me speechless. Enjoy your ' + beerObject.name;
+		}
 
 		return template;
 	}
@@ -294,9 +312,8 @@ var HipsterDictionary = (function(Window, undefined ){
 			var descrip = generateDescription();
 			beerElements.description.text(descrip);
 
-			var baseHref = beerElements.tweetButton.attr("href");
-			console.log(baseHref);
-			beerElements.tweetButton.attr("href", baseHref + descrip);
+			generateTwitterButton(descrip);
+
 			removeMask(beerElements.description);
 		}, 1500);
 	}
@@ -320,19 +337,31 @@ var HipsterDictionary = (function(Window, undefined ){
 		var descrip = generateDescription();
 		beerElements.description.text(descrip);
 
-		var link = document.createElement('a');
-		link.setAttribute('href', "https://twitter.com/intent/tweet?url=/&hashtags=AveryBeerstache&text=" + descrip);
-		link.setAttribute('class', 'twitter-share-button pull-right');
-		link.setAttribute('style', 'margin-top:5px;');
-		link.setAttribute("data-size" ,"large");
-		link.setAttribute("data-related" ,"AveryBrewingCo,Mondo_Robot");
-		beerElements.tweetButtonHolder.append(link);
-		twttr.widgets.load();  //very important
+		generateTwitterButton(descrip);
 
 		setTimeout(function() {
 			beerElements.loadingDiv.hide();
 		}, 1500);
 		
+	}
+
+	function generateTwitterButton(descrip) {
+		descrip = descrip.substr(0, 140 - twitterHashtag.length - 3);
+		descrip = descrip.length == 140 - twitterHashtag.length - 3
+			? descrip + '...'
+			: descrip;
+
+		$('iframe').remove();
+		var link = document.createElement('a');
+		link.setAttribute('href', "https://twitter.com/intent/tweet?url=/&hashtags=AveryBeerstache");
+		link.setAttribute('class', 'twitter-share-button pull-right');
+		link.setAttribute('style', 'margin-top:5px;');
+		link.setAttribute("data-size" ,"large");
+		link.setAttribute('data-text', descrip);
+		link.setAttribute("data-related" ,"AveryBrewingCo,Mondo_Robot");
+		link.setAttribute("data-hastags", "AveryBeerstache");
+		beerElements.tweetButtonHolder.append(link);
+		twttr.widgets.load();  //very important
 	}
 
 	function shuffle(array) {
