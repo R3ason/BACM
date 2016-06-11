@@ -7,9 +7,6 @@ block pagestyles
 block content
 	section.card.clearfix
 		div.loader AVERY IS THE BEST
-	div.loader AVERY IS THE BEST
-	section.card		
-		img(src="")#BeerLabel
 
 		div.label-and-info.pull-left
 			img.beer-label(src="")#BeerLabel
@@ -26,8 +23,9 @@ block content
 					escaped Generate Stache&#8482;
 
 			article#Description.centerHorizontal Some awesome stuff that describes the beer.
-
-			a.twitter-hashtag-button(href="https://twitter.com/intent/tweet?button_hashtag=AveryBeerstache&text=stuff yeah neato", data-size="large", data-related="AveryBrewingCo,Mondo_Robot", data-moar-text="stuff")
+			
+			- var href = "https://twitter.com/intent/tweet?button_hashtag=AveryBeerstache&text=stuff yeah neato";
+			a.twitter-hashtag-button(href=href, data-size="large", data-related="AveryBrewingCo,Mondo_Robot", data-moar-text="stuff")
 				| Tweet #AveryBeerstache
 
 block pagescripts
