@@ -76,12 +76,13 @@ ul.relatedBeers {
 
 ul.relatedBeers li {
 	border: 1px solid gainsboro;
+	margin: 1px;
 	background-color: #1F1E1D;
 	display:block;
 	float:left;
 	padding: 8px;
 	text-align: center;
-	width: 33.33%;
+	width: 33%;
 }
 
 ul.relatedBeers li a {
