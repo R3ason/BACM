@@ -4,6 +4,7 @@
 var HipsterDictionary = (function(Window, undefined ){
 
     var beerApiUrl = 'http://apis.mondorobot.com/beers/';
+    var beerElements = {};
     
     var partOfSpeech = {
         "noun": [
@@ -51,19 +52,19 @@ var HipsterDictionary = (function(Window, undefined ){
     function init()
     {
         cacheElements();
-        var href = $(this).attr("href");
+        var href = window.location.href;
         var beerId = href.substr(href.lastIndexOf('/') + 1);
         callBeerApi(beerId, populatePageAssets);
     }
     
     function cacheElements() {
-        this.beerName = $(this).find('#beerName');
-        this.beerLabel = $(this).find('#beerLabel');
-        this.beerStyle = $(this).find('#beerStyle');
-        this.abv = $(this).find('#beerName');
-        this.description = $(this).find('#description');
-        this.generatedDescription = $(this).find('#generatedDescription');
-        this.location = $(this).find('#location');
+        beerElements.beerName = $(this).find('#beerName');
+        beerElements.beerLabel = $(this).find('#beerLabel');
+        beerElements.beerStyle = $(this).find('#beerStyle');
+        beerElements.abv = $(this).find('#beerName');
+        beerElements.description = $(this).find('#description');
+        beerElements.generatedDescription = $(this).find('#generatedDescription');
+        beerElements.location = $(this).find('#location');
     }
 
     function callBeerApi(beerId, callback) {
@@ -72,20 +73,17 @@ var HipsterDictionary = (function(Window, undefined ){
             url: beerApiUrl + beerId,
             dataType: "json"
         })
-        //.done(callback(data));
-        .done(function(data)
-        {
-
-        });
+        .done(callback);
     }
 
     function populatePageAssets(data)
     {
-        this.beerName.text(data.name);
-        this.beerLabel.attr('src', data.label_image.original);
-        this.beerStyle.text(data.style);
-        this.abv.text(data.abv);
-        this.description.text(data.description);
+        var beer = data.beer;
+        beerElements.beerName.text(beer.name);
+        beerElements.beerLabel.attr('src', beer.label_image.original);
+        beerElements.beerStyle.text(beer.style);
+        beerElements.abv.text(beer.abv);
+        beerElements.description.text(beer.description);
     }
     return {
         GenerateDescription: generateDescription,

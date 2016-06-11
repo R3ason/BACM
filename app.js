@@ -14,6 +14,7 @@ app.get('/', indexController.index);
 
 app.get('/locator', locatorController.locator);
 
+app.get('/stache/:id', stacheController.stache);
 app.get('/stache', stacheController.stache);
 
 var server = app.listen(7510, function() {
