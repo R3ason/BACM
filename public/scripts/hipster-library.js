@@ -19,9 +19,9 @@ var HipsterDictionary = (function(Window, undefined ){
 
 	var partOfSpeech = {
 		'noun': [
-		'hop_varieties',
-		'dry_hop_varieties',
-		'yeast_varieties',
+			'hop_varieties',
+			'dry_hop_varieties',
+			'yeast_varieties',
 			'malt_varieties'
 		],
 		'adjective': [
@@ -43,8 +43,14 @@ var HipsterDictionary = (function(Window, undefined ){
 
 		//Build Adjective List
 		var adjectiveList = [];
-		//for(var i = 0; i < )
+		for(var i = 0; i < partOfSpeech.adjective.length; i++) {
+			var category = beerObject[partOfSpeech.adjective[i]];
+			if(category) {
+				adjectiveList = adjectiveList.concat(category);
+			}
+		}
 		template = template;
+		debugger;
 		return template;
 	}
 
