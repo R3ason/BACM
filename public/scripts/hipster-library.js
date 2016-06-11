@@ -431,7 +431,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		if(beerObject.related_beers) {
 			var relatedBeers = beerObject.related_beers;
 			for(var i = 0; i < relatedBeers.length; i++) {
-				var listItem = $('<li><a href="javascript:void(0);">' + relatedBeers[i].name + '</a></li>');
+				var listItem = $('<li><a href="javascript:void(0);" data-id="' + relatedBeers[i].id + '">' + relatedBeers[i].name + '</a></li>');
 				beerElements.relatedLinksList.append(listItem.clone());
 			}
 		}
@@ -457,7 +457,7 @@ var HipsterDictionary = (function(Window, undefined ){
 
 	function toTitleCase(str)
 	{
-		return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+		return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1);});
 	}
 
 
