@@ -9,7 +9,7 @@ var HipsterDictionary = (function(Window, undefined ){
     var beerObject = {};
     
     var partOfSpeech = {
-        "noun": [
+        'noun': [
             'hop_varieties',
             'dry_hop_varieties',
             'yeast_varieties',
@@ -22,8 +22,8 @@ var HipsterDictionary = (function(Window, undefined ){
     };
 
     var templates = [
-        "This {name} is so {adjective}",
-        "The {adjective} qualities of this {name} make it totally {adjective}"
+        'This {name} is so {adjective}',
+        'The {adjective} qualities of this {name} make it totally {adjective}'
     ];
 
     function sentencePolisher(template) {
@@ -50,6 +50,7 @@ var HipsterDictionary = (function(Window, undefined ){
     function init()
     {
         cacheElements();
+        bindElements();
         var href = window.location.href;
         var beerId = href.substr(href.lastIndexOf('/') + 1);
         callBeerApi(beerId, populatePageAssets);
@@ -63,8 +64,17 @@ var HipsterDictionary = (function(Window, undefined ){
         beerElements.abv = rootElement.find('#ABV');
         beerElements.description = rootElement.find('#Description');
         beerElements.location = rootElement.find('#Location');
+        beerElements.updateDescriptionLink = rootElement.find('a');
     }
 
+    function bindElements() {
+        beerElements.updateDescriptionLink.on('click', $.proxy(handleDescriptionUpdate, this));
+    }
+
+    function handleDescriptionUpdate(e) {
+        e.preventDefault();
+        beerElements.description.text(generateDescription());
+    }
     function callBeerApi(beerId, callback) {
         $.ajax({
             method: "get",
