@@ -78,7 +78,7 @@
 			},this))
 		},
 		findBeer:function(position, distance){
-			var base = 'https://apis.mondorobot.com/beer-finder',
+			var base = 'http://apis.mondorobot.com/beer-finder',
 				distance = distance || this.MILES,
 				maxDistance = 100,
 				//TODO: get from query string
@@ -165,7 +165,7 @@
 		geocodeAddr:function(result){
 			var KEY = 'AIzaSyCecj5dwIl4_zWPH9GwY_kOPDMJK3Z7fZg',
 				address = result.address,
-				base = 'https://maps.googleapis.com/maps/api/geocode/json?',
+				base = 'http://maps.googleapis.com/maps/api/geocode/json?',
 				addr = [address.street, address.city, address.state].join(', ')
 				url = [base,'address=',addr,'&key=',KEY].join('');
 
