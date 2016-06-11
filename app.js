@@ -18,6 +18,9 @@ app.get('/locator/:id', locatorController.locator);
 app.get('/stache/:id', stacheController.stache);
 app.get('/stache', stacheController.stache);
 
-var server = app.listen(7510, function() {
-	console.log('Express server listening on port ' + server.address().port);
-});
+var port_number = server.listen(process.env.PORT || 7510);
+app.listen(port_number);
+
+//var server = app.listen(7510, function() {
+//	console.log('Express server listening on port ' + server.address().port);
+//});
