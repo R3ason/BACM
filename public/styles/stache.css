@@ -9,14 +9,11 @@ section.card{
 
 }
 
-
-
 img{
-	border-bottom: 1px solid black;
 	display: block;
 	margin: 15px auto;
 
-	max-width: 100%;
+	max-width: 75%;
 
 	padding-bottom: 25px;
 }
