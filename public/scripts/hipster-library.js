@@ -99,7 +99,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		beerElements.description = rootElement.find('#Description');
 		beerElements.location = rootElement.find('#Location');
 		beerElements.updateDescriptionLink = rootElement.find('a');
-		beerElements.loadingDiv = rootElement.find('div.loader');
+		beerElements.loadingDiv = $('div.loader');
 	}
 
 	function bindElements() {
