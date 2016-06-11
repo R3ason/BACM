@@ -35,6 +35,12 @@ body, html {
 	text-transform: capitalize;
 }
 
+.all-error {
+	color: rgb(240, 240, 240);
+	padding-top: 200px;
+	text-align: center;
+}
+
 .hipster-text:before {
 	content: open-quote;
 }
