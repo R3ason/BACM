@@ -16,21 +16,18 @@ var HipsterDictionary = (function(Window, undefined ){
 		'grooming moustache...',
 		'beeeeeeeer...'
 	];
-<<<<<<< HEAD
 	
 	var partOfSpeech = {
 		'noun': [
 			'hop_varieties',
 			'dry_hop_varieties',
 			'yeast_varieties',
-=======
 
 	var partOfSpeech = {
 		'noun': [
 		'hop_varieties',
 		'dry_hop_varieties',
 		'yeast_varieties',
->>>>>>> 35e0a454a4647f7ea8f60d507b9ad1eb0373e5e7
 			'malt_varieties'
 		],
 		'adjective': [
@@ -41,7 +38,6 @@ var HipsterDictionary = (function(Window, undefined ){
 
 	var templates = [
 		'This {name} is so {adjective}',
-<<<<<<< HEAD
 		'The {adjective} qualities of this {name} make it totally {adjective}',
 		"The {hop} hops in my {name} really add to the {category}, {adjective} flavors.",
 		"{name}: {adjective} artisinal disrupter extraordinaire!",
@@ -51,9 +47,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		"Premium nuance from the playful balance of {adjective} hops aroma with the {malt} addition make my {name} from Avery a glorious palate pleaser.",
 		"No FOMO for the YOLO thanks to Avery and my {name} with the totes killer, {adjective} {category} flavor!",
 		"Where else can you find a {malt} malt paired with a {hop} hop, but Avery?  Artisan before those kids even knew what it meant."
-=======
 		'The {adjective} qualities of this {name} make it totally {adjective}'
->>>>>>> 35e0a454a4647f7ea8f60d507b9ad1eb0373e5e7
 	];
 
 	function sentencePolisher(template) {
