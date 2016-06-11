@@ -6,10 +6,13 @@ block pagestyles
 
 block content
 	h1 Find Beer
-	img(src="/images/avery.png", alt="Avery Brewery logo")
-	article#locator-content.row-fluid
+	//- img(src="/images/avery.png", alt="Avery Brewery logo")
+	article.row-fluid
 
-		div#map.col-md-12
+		section.col-md-9
+			div#map(data-beer=beer)
+		section.col-md-3
+			ul#locations-list
 
 block pagescripts
 	script(src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js")
