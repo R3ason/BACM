@@ -30,7 +30,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		'drinking beer...',
 		'grooming moustache...',
 		'beeeeeeeer...',
-        'listening to a band you haven\'t heard of...',
+        'listening to a band you probably haven\'t heard of...',
 		'Adding more flannel...',
         'riding my fixie...',
         'pausing my 45...',
@@ -122,7 +122,7 @@ var HipsterDictionary = (function(Window, undefined ){
         'If Avery\'s {name} was a member of my preferred sex, I would definitely buy it dinner',
         'The {adjective} {hop} hops redefine the {cat} and make my {name} the best in the biz',
         'When I heard that Avery\'s {name} was so {adjective} I left my wife immediately to start brewing my own {cat} beers',
-        'The {adjective} {hop} hops in the {name} reminds me of bathing in a pool with Mermaids',
+        'The {adjective} {hop} hops in the {name} reminds me of bathing in a pool with Merpeople',
         'You will really feel the {hop} hops in the {name} where it counts',
         'The {name} {cat} is so {adjective} that I will literally bathe my Pug in it',
         'I find that the {adjective} {hop} hops bring out the true {adjective} aroma in the {name}',
@@ -153,8 +153,8 @@ var HipsterDictionary = (function(Window, undefined ){
         'The {adjective} crafting of the {noun} and {noun} in this {adjective} {name} is truly {adjective}',
         'A {cat} style beer like this {name} was invented by {adjective} tiger tamers in Eastern Indiana',
         'The {yeast} yeast goes through a {adjective} process that is authentic to the {name}',
-        'The artful collaboration of {noun}\'s {malt} malts and the {adjective} {nouns} is really a comment on society',
-        '{names}\'s {yeast} yeasts and {adjective} {hops} provide a whistfully {adjective} exposure to the {cat} beers',
+        'The artful collaboration of {noun} \'s {malt} malts and the {adjective} {nouns} is really a comment on society',
+        '{names} \'s {yeast} yeasts and {adjective} {hops} provide a whistfully {adjective} exposure to the {cat} beers',
         'Knowing the {adjective} relationship the brewer has with the {malt} malts makes me feel like I\'m really connecting with the {name}',
 	];
 
