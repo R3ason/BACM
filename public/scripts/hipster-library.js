@@ -141,7 +141,9 @@ var HipsterDictionary = (function(Window, undefined ){
 		beerElements.abv.text(beerObject.abv);
 		beerElements.description.text(generateDescription());
 
-		beerElements.loadingDiv.hide();
+		setTimeout(function() {
+			beerElements.loadingDiv.hide();
+		}, 5000);
 		
 	}
 	return {
