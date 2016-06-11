@@ -3,7 +3,7 @@
 
 var HipsterDictionary = (function(Window, undefined ){
 
-	var beerApiUrl = 'http://apis.mondorobot.com/beers/';
+	var beerApiUrl = 'https://apis.mondorobot.com/beers/';
 	var rootElement;
 	var beerElements = {};
 	var beerObject = {};
