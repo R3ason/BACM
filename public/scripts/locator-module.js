@@ -4,7 +4,15 @@
 
 	Locator.prototype = {
 		MILES:10,
+		ALL_BEER:{},
 		init:function(){
+			this.$root = $('#root');
+			this.ALL_BEER = this.$root.data('all-beer').beers;
+			
+			this.$root
+				.data('all-beer',this.ALL_BEER)
+				.removeAttr('data-all-beer');
+
 			this.getLocation();
 
 		},
@@ -58,39 +66,46 @@
 			}).then(function(response){
 				var locator = this,
 					$list = $('#locations-list');
+
 				$.each(response.results,function(i, result){
 					var address = [result.address.street, result.address.city, result.address.state].join(', '),
 						additionalBeers = function(beers) {
 							if(beers.length){
-								var content = ['Additional beer:\n<ul>'],
+								var content = ['<dt>Additional beer:</dt>\n<dd><ul>'],
 									items = $.map(beers,function(beer,i){
 										return '<li>' + beer.name + '</li>'
 									}).join('');
 
-								content.push(items,'</ul>')
+								content.push(items,'</ul></dd>');
 
 								return content.join('');
 							}
-						};
+						},
+						$item = $([
+							'<li>',
+								'<article>',
+									'<h3>',
+										result.name.toLowerCase(),
+									'</h3>',
+									'<dl>',
+										'<dt>Address:</dt>',
+										'<dd>', address, '</dd>',
+										'<dt>Phone:</dt>',
+										'<dd><a href="tel:', result.phone ,'">', result.phone,'</a></dd>',
+										additionalBeers(result.additional_beers),
+									'</dl>',
+								'</article>',
+							'</li>'
+						].join(''));
 
 					locator.geocodeAddr(result);
-					$list.append([
-						'<li>',
-							'<article>',
-								'<h1>',
-									result.name.toLowerCase(),
-								'</h1>',
-								'<dl>',
-									'<dt>Address:</dt>',
-									'<dd>', address, '</dd>',
-									'<dt>Phone:</dt>',
-									'<dd><a href="tel:', result.phone ,'">', result.phone,'</a></dd>',
-								'</dl>',
-								additionalBeers(result.additional_beers),
-							'</article>',
-						'</li>'
-					].join(''));
+					setTimeout(function(){
+						$list.append($item.fadeIn());
+					},i * 250);
+					
 				});
+			}).then(function(){
+				$('body').removeClass('loading');
 			});
 		},
 
@@ -113,10 +128,11 @@
 					coords = result.geometry.location,
 					content = ['<p>', address, '</p>'],
 					avery = L.icon({
-						iconUrl: '/images/avery-sm-icon.png',
-						iconSize:[28, 31], // size of the icon
-						iconAnchor:[14, 15], // point of the icon which will correspond to marker's location
-						popupAnchor:[28, 31] // point from which the popup should open relative to the iconAnchor
+						iconUrl: '/images/map-marker-avery.svg',
+						shadowUrl: '/images/marker-shadow.png',
+						iconSize:[25, 41], // size of the icon
+						iconAnchor:[25, 41], // point of the icon which will correspond to marker's location
+						popupAnchor:[-3, -76], // point from which the popup should open relative to the iconAnchor
 					});
 
 				L.marker([coords.lat, coords.lng],{ icon: avery })
