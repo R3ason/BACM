@@ -9,9 +9,6 @@
 
 		},
 		initMap:function(position){
-			console.log('initing map...');
-			
-
 			if(!!position){
 				var coords = [position.coords.latitude, position.coords.longitude],
 					zoom = 14,
@@ -40,12 +37,15 @@
 		},
 
 		findBeer:function(position){
-			console.log('finding beer...');
 			var base = 'http://apis.mondorobot.com/beer-finder',
 				distance = this.MILES,
 				//TODO: get from query string
-				beer = 'ipa';
+				beer = $('#map').data('beer');
 			
+			if(!beer){
+				return;
+			}
+
 			var $ajax = $.ajax({
 				context:this,
 				data:{
@@ -56,20 +56,50 @@
 				},
 				url:base
 			}).then(function(response){
-				var locator = this;
+				var locator = this,
+					$list = $('#locations-list');
 				$.each(response.results,function(i, result){
-					locator.geocodeAddr(result.address);
+					var address = [result.address.street, result.address.city, result.address.state].join(', '),
+						additionalBeers = function(beers) {
+							if(beers.length){
+								var content = ['Additional beer:\n<ul>'],
+									items = $.map(beers,function(beer,i){
+										return '<li>' + beer.name + '</li>'
+									}).join('');
+
+								content.push(items,'</ul>')
+
+								return content.join('');
+							}
+						};
+
+					locator.geocodeAddr(result);
+					$list.append([
+						'<li>',
+							'<article>',
+								'<h1>',
+									result.name.toLowerCase(),
+								'</h1>',
+								'<dl>',
+									'<dt>Address:</dt>',
+									'<dd>', address, '</dd>',
+									'<dt>Phone:</dt>',
+									'<dd><a href="tel:', result.phone ,'">', result.phone,'</a></dd>',
+								'</dl>',
+								additionalBeers(result.additional_beers),
+							'</article>',
+						'</li>'
+					].join(''));
 				});
 			});
 		},
 
-		geocodeAddr:function(address){
+		geocodeAddr:function(result){
 			var KEY = 'AIzaSyCecj5dwIl4_zWPH9GwY_kOPDMJK3Z7fZg',
+				address = result.address,
 				base = 'https://maps.googleapis.com/maps/api/geocode/json?',
 				addr = [address.street, address.city, address.state].join(', ')
 				url = [base,'address=',addr,'&key=',KEY].join('');
-
-			console.log('geocoding ' + addr + '...');
 
 			$.getJSON(url)
 				.then($.proxy(this.plotLocation, this));
@@ -80,12 +110,20 @@
 				var map = this.map,
 					result = response.results[0],
 					address = result.formatted_address,
-					coords = result.geometry.location;
+					coords = result.geometry.location,
+					content = ['<p>', address, '</p>'],
+					avery = L.icon({
+						iconUrl: '/images/avery-sm-icon.png',
+						iconSize:[28, 31], // size of the icon
+						iconAnchor:[14, 15], // point of the icon which will correspond to marker's location
+						popupAnchor:[28, 31] // point from which the popup should open relative to the iconAnchor
+					});
 
-				console.log('plotting ' + address + '...');
-
-				L.marker([coords.lat, coords.lng]).addTo(map)
-					.bindPopup(address);
+				L.marker([coords.lat, coords.lng],{ icon: avery })
+					.addTo(map)
+					.bindPopup(content.join(''));
+					//.openPopup()
+					
 			}
 			else{
 				console.error(response.status);
@@ -93,7 +131,6 @@
 		},
 
 		getLocation:function(){
-			console.log('geolocating...');
 			var locator = this;
 			if ('geolocation' in navigator) {
 				/* geolocation is available */

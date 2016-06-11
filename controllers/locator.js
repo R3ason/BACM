@@ -1,6 +1,13 @@
 var locatorController = {
 	locator: function(req, res) {
-		res.render('locator');
+
+		if(!!req.params.id){
+			res.render('locator', { beer: req.params.id });
+		}
+		else{
+			res.render('locator');
+		}
+		
 	}
 };
 
