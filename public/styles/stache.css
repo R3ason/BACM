@@ -159,7 +159,15 @@ ul.relatedBeers li a {
 		float: none !important;
 		margin: auto;
 		padding-top: 0;
-		width: inherit;
+		width: inherit
+	}
+
+	nav{
+		font-size: 1.1em;
+	}
+
+	.beer-label{
+		width: 75%;
 	}
 }
 
@@ -181,7 +189,15 @@ ul.relatedBeers li a {
 		margin: auto;
 		padding-top: 0;
 		width: inherit;
-		font-size: 2em;
+		font-size: 2.5em;
+	}
+
+	nav{
+		font-size: 1.1em;
+	}
+
+	.beer-label{
+		width: 75%;
 	}
 }
 
@@ -204,6 +220,14 @@ ul.relatedBeers li a {
 		padding-top: 0;
 		width: inherit;
 	}
+
+	nav{
+		font-size: 1.1em;
+	}
+
+	.beer-label{
+		width: 75%;
+	}
 }
 
 /* ----------- iPhone 6+ ----------- */
@@ -224,6 +248,14 @@ ul.relatedBeers li a {
 		margin: auto;
 		padding-top: 0;
 		width: inherit;
+	}
+
+	nav{
+		font-size: 1.1em;
+	}
+
+	.beer-label{
+		width: 75%;
 	}
 }
 
