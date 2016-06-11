@@ -5,6 +5,7 @@ block pagestyles
 	link(rel="stylesheet", href="../styles/stache.css")
 
 block content
+	div.overlay
 	a(href="http://www.averybrewery.com")
 		img.top-logo(src="/images/avery-tab.svg", alt="Avery Brewery logo")
 	section.card.clearfix
@@ -24,7 +25,8 @@ block content
 				button#HipsterLink.btn.btn-xs.btn-default.generator-btn.pull-right
 					escaped Generate Stache&#8482;
 
-			article#Description.centerHorizontal.hipster-text Some awesome stuff that describes the beer.
+			article#Description.centerHorizontal
+				p.hipster-text Some awesome stuff that describes the beer.
 				p#beerSignature.signature-text ~
 
 			div#tweetButtonHolder.lower-button-holder

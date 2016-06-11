@@ -10,6 +10,16 @@
 
 }*/
 
+.overlay {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to bottom, rgba(0,0,0,0.6) 12%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 65% ,rgba(0,0,0,0.85));
+}
+
 .loader{
 	color: transparent;
 	background-color: #1F1E1D;
@@ -27,13 +37,15 @@
 }
 
 .beer-label{
+	z-index: 10;
 	display: block;
 	margin: auto;
-	max-width: 75%;
+	width: 75%;
 	padding-bottom: 25px;
 }
 
 .top-logo {
+	z-index: 10;
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -65,15 +77,23 @@
 }
 
 .stache {
+	z-index: 10;
 	padding-top: 205px;
 	width: 60%;
 }
 
-.hipster-text {
-	padding-top: 45px;
-	font-size: 30px;
+#Description {
 	color: rgb(240, 240, 240);
 	text-shadow: 2px 2px 5px rgb(0,0,0);
+}
+
+.hipster-text {
+	padding-top: 45px;
+	font-size: 35px;
+	line-height: 40px;
+}
+#beerSignature {
+	text-align: right;
 }
 
 .generator-btn {
