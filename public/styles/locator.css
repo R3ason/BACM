@@ -15,10 +15,14 @@ article > section{
 	background:rgba(255,255,255,0.95);
 }
 
+.brand-container {
+	padding-top: 20px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
 .brand {
-	width: 80%;
-    max-width: 160px;
-    min-width: 100px;
+	width: 55%;
 }
 
 .map-and-info {
@@ -36,9 +40,13 @@ article > section{
 	padding: 10px 0;
 }
 
+.list-header {
+	font-size: 18px;
+	text-align: center;
+}
+
 #locations-list{
-	/*height: 700px;*/
-	height: 500px;
+	height: 434px;
 	overflow: auto;
 }
 

@@ -203,48 +203,59 @@
 		},
 
 		createListItem:function(result){
-			var address = [result.address.street, result.address.city, result.address.state].join(', '),
-				additionalBeers = function(beers) {
-					if(beers.length){
-						var content = ['<dt>Additional beer:</dt>\n<dd><ul>'],
-							items = $.map(beers,function(beer,i){
-								var name = beer.name;
+			var address = [result.address.street, result.address.city, result.address.state].join(', ');
+			var formattedPhoneNumber = locator.formatPhone(result.phone);
+			
+			additionalBeers = function(beers) {
+				if(beers.length){
+					var content = ['<dt>Additional beer:</dt>\n<dd><ul>'],
+						items = $.map(beers,function(beer,i){
+							var name = beer.name;
 
-								if(locator.beersByName[beer.name]){
-									var beer = locator.beersByName[beer.name];
-									name = '<a href="/stache/' + beer.id  + '">' + beer.name + '</a> <small>('+ beer.abv +'% abv)</small>'
-								}
+							if(locator.beersByName[beer.name]){
+								var beer = locator.beersByName[beer.name];
+								name = '<a href="/stache/' + beer.id  + '">' + beer.name + '</a> <small>('+ beer.abv +'% abv)</small>'
+							}
 
-								return '<li>' + name + '</li>'
-							}).join('');
+							return '<li>' + name + '</li>'
+						}).join('');
 
-						content.push(items,'</ul></dd>');
+					content.push(items,'</ul></dd>');
 
-						return content.join('');
-					}
-				},
-				$item = $([
-					'<li class="location"">',
-						'<article>',
-							'<h3 class="capitalize ', locator._removeSpaces(result.name) ,'">',
-								result.name.toLowerCase(),
-							'</h3>',
-							'<dl>',
-								'<dt>Address:</dt>',
-								'<dd class="capitalize">', address.toLowerCase(), '</dd>',
-								'<dt>Phone:</dt>',
-								'<dd><a href="tel:', result.phone ,'">', result.phone,'</a></dd>',
-								additionalBeers(result.additional_beers),
-							'</dl>',
-						'</article>',
-					'</li>'
-				].join(''));
+					return content.join('');
+				}
+			},
+			$item = $([
+				'<li class="location"">',
+					'<article>',
+						'<h3 class="capitalize ', locator._removeSpaces(result.name) ,'">',
+							result.name.toLowerCase(),
+						'</h3>',
+						'<dl>',
+							'<dt>Address:</dt>',
+							'<dd class="capitalize">', address.toLowerCase(), '</dd>',
+							'<dt>Phone:</dt>',
+							'<dd><a href="tel:', result.phone ,'">', formattedPhoneNumber,'</a></dd>',
+							additionalBeers(result.additional_beers),
+						'</dl>',
+					'</article>',
+				'</li>'
+			].join(''));
 
-				return $item;
+			return $item;
 		},
 
 		_removeSpaces:function(str){
 			return str.toLowerCase().split(/[^A-Za-z\&]/).join('-');
+		},
+
+		formatPhone:function(phoneString){
+			var editedNum = phoneString;
+
+			editedNum = editedNum.replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '($1) $2-$3');
+			// console.log("editedNum: ", editedNum);
+
+			return editedNum;
 		}
 	};
 
