@@ -29,6 +29,11 @@ article > section{
 	width:100%;
 }
 
+#no-beer-found p{
+	font-size: 18px;
+	padding: 10px 0;
+}
+
 #locations-list{
 	/*height: 700px;*/
 	height: 500px;
