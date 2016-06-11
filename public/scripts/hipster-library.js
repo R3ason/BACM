@@ -50,16 +50,11 @@ var HipsterDictionary = (function(Window, undefined ){
 
     var exquisiteAdjectives = [
         'amatory',
-        'boorish',
         'bleeding edge',
-        'calamitous',
         'corpulent',
         'comely',
-        'defematory',
         'dilatory',
-        'dowdy',
         'efficacious',
-        'egregious',
         'epic',
         'equanimous',
         'exclusive',
@@ -72,9 +67,7 @@ var HipsterDictionary = (function(Window, undefined ){
         'jocular',
         'luminous',
         'meretricious',
-        'noxious',
         'obtuse',
-        'petulant',
         'pioneering',
         'quiescent',
         'redolent',
@@ -108,7 +101,7 @@ var HipsterDictionary = (function(Window, undefined ){
         'Drinking {name} reminds me of a night of {adjective} fun and the {pairings} we ate while gazing into the stars',
         'If Avery\'s {name} was a member of my preferred sex, I would definitely buy it a {pairings}',
         'The {adjective} {hop} define the {cat} and make my {name} the best in the biz',
-        'When I heard that Avery\'s {name} was so {adjective} I didn\'t believe it. But I tried it and left my wife immediately to start brewing my own {cat}',
+        'When I heard that Avery\'s {name} was so {adjective} I didn\'t believe it. But I tried it and left my wife immediately to start brewing my own {cat} beers',
         'The {adjective} {hop} in the {name} remind me of bathing in a pool with Mermaids',
         'You will really feel the {hop} hops where it counts in the {name}',
         'The {name} {cat} is so {adjective} that I will literally bathe my Pug in it',
@@ -117,7 +110,7 @@ var HipsterDictionary = (function(Window, undefined ){
         'The Pope once said that the {hop} hops in the {name} are so {adjective} that it could litrally be used to bless infants',
         'You literally can\'t find another {cat} like {name} anywhere. The {hop} hops and {adjective} taste make it so {adjective} that it will leave you speechless',
         'The {adjective} way Avery uses the {hop} hops in the {name} truly makes it a game changer',
-        'Avery\'s {name} completely revolutionizes the {cat} category. It\'s {adjective} use of the aromatic {hop} to balance out the {adjective} yeast results in a {adjective} beer you can brin to your mother',
+        'Avery\'s {name} completely revolutionizes the {cat} category. It\'s {adjective} use of the aromatic {hop} to balance out the {adjective} yeast results in a {adjective} beer you can bring to your mother',
         'I have never seen a {yeast} ferment the way it does in the {name} . It is truly a {adjective} specimen',
         'The Avery {name} is the most important {category} of the decade',
         'I often use the {adjective} {name} to lighten up before heading out and krumping for the evening',
@@ -310,7 +303,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		addMask(beerElements.description);
 		setTimeout(function(){
 			var descrip = generateDescription();
-			beerElements.description.text(descrip);
+			beerElements.description.text(description);
 
 			generateTwitterButton(descrip);
 
