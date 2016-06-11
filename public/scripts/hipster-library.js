@@ -35,7 +35,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		'pairings': [
 			'pairings'
 		],
-		'category': [
+		'cat': [
 			'categories'
 		],
 		'yeast': [
@@ -93,13 +93,13 @@ var HipsterDictionary = (function(Window, undefined ){
 	var templates = [
 		'This {name} is so {adjective}',
 		'The {adjective} qualities of this {name} make it totally {adjective}',
-		"The {hop} hops in my {name} really add to the {category}, {adjective} flavors.",
+		"The {hop} hops in my {name} really add to the {cat} , {adjective} flavors.",
 		"{name}: {adjective} artisinal disrupter extraordinaire!",
 		"{hop} hops enhance the matchless aroma and {adjective} essence.",
 		"I love embibing {name} with my {pairings} routine.  The {adjective} notes along with the {malt} adds incredible mouth feel!",
 		"Mucho gusto from the {adjective} {hop} hops  artfully mingle with the {yeast} yeast to create a uniquely supreme and {adjective} experience.",
 		"Premium nuance from the playful balance of {adjective} hops aroma with the {malt} addition make my {name} from Avery a glorious palate pleaser.",
-		"No FOMO for the YOLO thanks to Avery and my {name} with the totes killer, {adjective} {category} flavor!",
+		"No FOMO for the YOLO thanks to Avery and my {name} with the totes killer, {adjective} {cat} flavor!",
 		"Where else can you find a {malt} malt paired with a {hop} hop, but Avery?  Artisan before those kids even knew what it meant.",
 		'The {adjective} qualities of this {name} make it totally {adjective}'
 	];
@@ -157,8 +157,8 @@ var HipsterDictionary = (function(Window, undefined ){
 
 		//Build Category List
 		var categoryList = [];
-		for(var i = 0; i < partOfSpeech.category.length; i++) {
-			var category = beerObject[partOfSpeech.category[i]];
+		for(var i = 0; i < partOfSpeech.cat.length; i++) {
+			var category = beerObject[partOfSpeech.cat[i]];
 			if(category) {
 				categoryList = categoryList.concat(category);
 			}
@@ -190,7 +190,6 @@ var HipsterDictionary = (function(Window, undefined ){
 		maltList = shuffle(maltList);
 
 		var templateArray = template.split(" ");
-		
 		//Todo [Ben]: popping WILL break this if there are more instances than in the array!!!
 		for (var i = 0; i < templateArray.length; i++) {
 			var currentItem = templateArray[i];
@@ -207,7 +206,7 @@ var HipsterDictionary = (function(Window, undefined ){
 					case '{pairings}':
 						templateArray[i] = pairingList.pop().toLowerCase();
 						break;
-					case '{category}':
+					case '{cat}':
 						templateArray[i] = categoryList.pop().toLowerCase();
 						break;
 					case '{yeast}':
@@ -218,7 +217,7 @@ var HipsterDictionary = (function(Window, undefined ){
 				}
 		}
 
-		template = templateArray.join(' ');
+		template = templateArray.join(' ').replace(' ,', ',');
 
 		return template;
 	}
