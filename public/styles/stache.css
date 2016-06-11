@@ -38,6 +38,11 @@
 	padding: 0;
 }
 
+.generator-btn{
+	background-color: grey;
+	color: white;
+}
+
 .describer {
 	font-family: sans-serif;
 	font-size: 12px;
@@ -63,27 +68,32 @@
 
 nav {
 	position: absolute;
-	bottom: 0;
+	bottom: 15px;
+	color: beige;
+	font-size: 20px;
 	left: 0;
 	right: 0;
 	padding: 0;
+	text-align: center;
 }
 ul.relatedBeers {
 	color: rgb(240, 240, 240);
 	list-style: none;
+	margin: auto;
 	padding: 0;
+	width: 50;
 }
 
 ul.relatedBeers li {
-	border: 1px solid gainsboro;
-	margin: 1px;
-	background-color: #1F1E1D;
 	display:block;
 	float:left;
 	padding: 8px;
 	text-align: center;
-	width: 33%;
+	width: 32%;
 }
+
+ul.relatedBeers li:first-child{ border-right: 1px solid beige; }
+ul.relatedBeers li:last-child{ border-left: 1px solid beige; }
 
 ul.relatedBeers li a {
 	color: rgb(240, 240, 240);

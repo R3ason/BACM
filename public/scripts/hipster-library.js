@@ -147,7 +147,7 @@ var HipsterDictionary = (function(Window, undefined ){
         'If I\'m not mistaken, I believe the {hop} hops in this {name} were grown by {adjective} monks in the Himalayas.',
         'The {malt} malts in this {name} has the perfect translucence for my vintage Polaroid selfies',
         'The {adjective} {noun} in my {name} really reminds me of this one foreign film I watched',
-        'Avery\'s {name} used {malt} malts, {yeast} yeasts and {noun}s before the were even popular',
+        'Avery\'s {name} used {malt} malts, {yeast} yeasts and {noun} s before the were even popular',
         'The iridesent {yeast} yeasts in the {name} provide a truly {adjective} olfactory to cranial experience',
         'The drinkability of this {name} is optimal when the {noun} {hop} hops are at the beginning of their season',
         'These {adjective} {malt} malts in my {name} are so {adjective} that they really make my beard glisten',
