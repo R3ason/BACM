@@ -72,7 +72,6 @@
 
 			var $ajax = $.ajax({
 				beforeSend:function(xhr, settings){
-					console.log('beforeSend:', arguments);
 					settings.distance = distance;
 				},
 				context:this,
@@ -91,7 +90,7 @@
 						$('#no-beer-found').remove();
 
 						$.each(response.results,function(i, result){
-							var $item = createListItem();
+							var $item = locator.createListItem(result);
 
 							locator.geocodeAddr(result);
 							setTimeout(function(){
@@ -202,10 +201,10 @@
 
 								if(locator.beersByName[beer.name]){
 									var beer = locator.beersByName[beer.name];
-									name = '<a href="/stache/' + beer.id  + '">' + beer.name + '</a>'
+									name = '<a href="/stache/' + beer.id  + '">' + beer.name + '</a> <small>('+ beer.abv +'% abv)</small>'
 								}
 
-								return '<li>' + name + ' <small>('+ beer.abv +'% abv)></small></li>'
+								return '<li>' + name + '</li>'
 							}).join('');
 
 						content.push(items,'</ul></dd>');
