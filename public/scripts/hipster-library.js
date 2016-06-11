@@ -337,8 +337,6 @@ var HipsterDictionary = (function(Window, undefined ){
 		var descrip = generateDescription();
 		beerElements.description.text(descrip);
 
-		//descrip = descrip.substr(0, 140 - twitterHashtag - 3) + '...';
-
 		generateTwitterButton(descrip);
 
 		setTimeout(function() {
@@ -348,6 +346,11 @@ var HipsterDictionary = (function(Window, undefined ){
 	}
 
 	function generateTwitterButton(descrip) {
+		descrip = descrip.substr(0, 140 - twitterHashtag.length - 3);
+		descrip = descrip.length == 140 - twitterHashtag.length - 3
+			? descrip + '...'
+			: descrip;
+
 		$('iframe').remove();
 		var link = document.createElement('a');
 		link.setAttribute('href', "https://twitter.com/intent/tweet?url=/&hashtags=AveryBeerstache");
