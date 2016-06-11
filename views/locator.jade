@@ -7,7 +7,7 @@ block pagestyles
 block content
 	h1 Find Beer
 	//- img(src="/images/avery.png", alt="Avery Brewery logo")
-	article.row-fluid
+	article#root.row-fluid(data-all-beer=allbeer)
 
 		section.col-md-9
 			div#map(data-beer=beer)
