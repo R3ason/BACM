@@ -32,6 +32,15 @@ var HipsterDictionary = (function(Window, undefined ){
 
 	var templates = [
 		'This {name} is so {adjective}',
+		'The {adjective} qualities of this {name} make it totally {adjective}',
+		"The {hop} hops in my {name} really add to the {category}, {adjective} flavors.",
+		"{name}: {adjective} artisinal disrupter extraordinaire!",
+		"{hop} hops enhance the matchless aroma and {adjective} essence.",
+		"I love embibing {name} with my {pairings} routine.  The {adjective} with the {malt} adds incredible mouth feel!",
+		"Mucho gusto from the {adjective} {hop} hops  artfully mingle with the {yeast} to create a uniquely supreme and {adjective} experience.",
+		"Premium nuance from the playful balance of {adjective} hops aroma with the {malt} addition make my {name} from Avery a glorious palate pleaser.",
+		"No FOMO for the YOLO thanks to Avery and my {name} with the totes killer, {adjective} {category} flavor!",
+		"Where else can you find a {malt} malt paired with a {hop} hop, but Avery?  Artisan before those kids even knew what it meant.",
 		'The {adjective} qualities of this {name} make it totally {adjective}'
 	];
 
