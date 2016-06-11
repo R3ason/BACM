@@ -188,6 +188,7 @@ var HipsterDictionary = (function(Window, undefined ){
 			}
 		}
 
+		// Only grab a few exquisite objectives. Let's not get too fancy
 		exquisiteAdjectives = shuffleArray(exquisiteAdjectives).slice(-5);
 
 		adjectiveList = adjectiveList.concat(exquisiteAdjectives);
@@ -234,7 +235,6 @@ var HipsterDictionary = (function(Window, undefined ){
 				categoryList = categoryList.concat(category);
 			}
 		}
-		//debugger;
 
 		categoryList = shuffleArray(categoryList);
 
@@ -298,7 +298,7 @@ var HipsterDictionary = (function(Window, undefined ){
 				template = template.replace('" ' + quote + ' "', '"' + quote + '"');
 			}
 		} catch(err) {
-			var errorIndex = Math.floor(Math.random() * errorMessages.length)
+			var errorIndex = getRandomNumber(errorMessages.length);
 			template = errorMessages[errorIndex];
 		}
 
@@ -308,8 +308,8 @@ var HipsterDictionary = (function(Window, undefined ){
 
 	function generateDescription() {
 		var tCount = templates.length;
-		var templateIndex = Math.floor(Math.random() * tCount) + 1;
-		var selectedTemplate = templates[templateIndex - 1];
+		var templateIndex = getRandomNumber(tCount);
+		var selectedTemplate = templates[templateIndex];
 		var finalSentence = sentencePolisher(selectedTemplate)
 		return toTitleCase(finalSentence);
 	};
@@ -320,7 +320,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		bindElements();
 		var href = window.location.href;
 		var beerId = href.substr(href.lastIndexOf('/') + 1);
-		callBeerApi(beerId, populatePageAssets);
+		callBeerApi(beerId || 'ipa', populatePageAssets);
 	}
 	
 	function cacheElements() {
@@ -343,8 +343,8 @@ var HipsterDictionary = (function(Window, undefined ){
 	}
 
 	function addMask(element) {
-		var loadingIndex = Math.floor(Math.random() * loadingMessages.length) + 1;
-		element.text(loadingMessages[loadingIndex - 1]);
+		var loadingIndex = getRandomNumber(loadingMessages.length);
+		element.text(loadingMessages[loadingIndex]);
 	}
 
 	function removeMask(element) {
@@ -375,22 +375,30 @@ var HipsterDictionary = (function(Window, undefined ){
 
 	function populatePageAssets(data)
 	{
+		try {
 		beerObject = data.beer;
 		
-		beerElements.beerName.text(beerObject.name);
-		beerElements.beerLabel.attr('src', beerObject.label_image.original);
-		beerElements.beerStyle.text(beerObject.style || "--");
-		beerElements.abv.text(beerObject.abv ? beerObject.abv + '%' : "--");
+			beerElements.beerName.text(beerObject.name);
+			beerElements.beerLabel.attr('src', beerObject.label_image.original);
+			beerElements.beerStyle.text(beerObject.style || "--");
+			beerElements.abv.text(beerObject.abv ? beerObject.abv + '%' : "--");
 
-		abbreviatedBeerName = beerObject.name.replace('The ', '');
+			abbreviatedBeerName = beerObject.name.replace('The ', '');
 
-		setHipsterDescriptionText();
+			setHipsterDescriptionText();
 
-		generateRelatedLinks();
+			generateRelatedLinks();
 
-		setTimeout(function() {
-			beerElements.loadingDiv.hide();
-		}, 1500);
+		} catch (err) {
+			$('.card').children().each(function(v, i) {
+				$(this).hide();
+			})
+			$('.container-fluid').append('<div class="hipster-text all-error">That\s a whole lotta plaid... Why don\'t you pick a beer from the menu on the right?</div>');
+
+		}
+			setTimeout(function() {
+				beerElements.loadingDiv.hide();
+			}, 1500);
 		
 	}
 
@@ -469,7 +477,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		while (0 !== currentIndex) {
 
 			// Pick a remaining element...
-			randomIndex = Math.floor(Math.random() * currentIndex);
+			randomIndex = getRandomNumber(currentIndex);
 			currentIndex -= 1;
 
 			// And swap it with the current element.
@@ -488,6 +496,11 @@ var HipsterDictionary = (function(Window, undefined ){
 				return txt.charAt(0).toUpperCase() + txt.substr(1);
 			}
 		);
+	}
+
+	function getRandomNumber(max) {
+		var rand = Math.floor(Math.random() * max)
+		return rand;
 	}
 
 
