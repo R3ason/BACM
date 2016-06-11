@@ -23,7 +23,8 @@ var HipsterDictionary = (function(Window, undefined ){
 		'timid',
 		'flamboyant',
 		'disenchanted',
-		'pugnacious'
+		'pugnacious',
+		'prestigious'
 	];
 
 	var loadingMessages = [
@@ -163,6 +164,10 @@ var HipsterDictionary = (function(Window, undefined ){
 		'Knowing the {adjective} relationship the brewer has with the {malt} malt makes me feel like I\'m really connecting with the {name}',
 	];
 
+	var errorMessages = [
+		'Good sir, you have confounded me and left me speechless. Enjoy your {name}'
+	];
+
 	function sentencePolisher(template) {
 		//Insert Beer Name
 		var beerName = beerObject.name;
@@ -293,9 +298,11 @@ var HipsterDictionary = (function(Window, undefined ){
 				template = template.replace('" ' + quote + ' "', '"' + quote + '"');
 			}
 		} catch(err) {
-			template = 'Good sir, you have confounded me and left me speechless. Enjoy your ' + beerObject.name;
+			var errorIndex = Math.floor(Math.random() * errorMessages.length)
+			template = errorMessages[errorIndex];
 		}
 
+		template = template.replace('{name}', beerName);
 		return template;
 	}
 
@@ -441,7 +448,7 @@ var HipsterDictionary = (function(Window, undefined ){
 
 	function generateRelatedLinks() {
 		beerElements.relatedLinksList.empty();
-		if(beerObject.related_beers) {
+		if(beerObject.related_beers && beerObject.related_beers.length > 0) {
 			var relatedBeers = beerObject.related_beers;
 			for(var i = 0; i < relatedBeers.length; i++) {
 				var listItem = $('<li><a href="' + relatedBeers[i].id + '">' + relatedBeers[i].name + '</a></li>');
