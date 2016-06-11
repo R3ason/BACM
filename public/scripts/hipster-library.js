@@ -89,31 +89,39 @@ var HipsterDictionary = (function(Window, undefined ){
         'unbelievable',
         'unique',
         'zealous',
+        'post-nouveau chic',
     ];
 
 	var templates = [
 		'This {name} is so {adjective}',
 		'The {adjective} qualities of this {name} make it totally {adjective}',
-		'The {hop} hops in my {name} really add to the {category}, {adjective} flavors.',
+		'The {hop} hops in my {name} really add to the {cat}, {adjective} flavors.',
 		'{name}: {adjective} artisinal disrupter extraordinaire!',
 		'{hop} hops enhance the matchless aroma and {adjective} essence.',
 		'I love embibing {name} with my " {pairings} " routine.  The {adjective} notes along with the {malt} adds incredible mouth feel!',
 		'Mucho gusto from the {adjective} {hop} hops  artfully mingle with the {yeast} yeast to create a uniquely supreme and {adjective} experience.',
 		'Premium nuance from the playful balance of {adjective} hops aroma with the {malt} addition make my {name} from Avery a glorious palate pleaser.',
-		'No FOMO for the YOLO thanks to Avery and my {name} with the totes killer, {adjective} {category} flavor!',
+		'No FOMO for the YOLO thanks to Avery and my {name} with the totes killer, {adjective} {cat} flavor!',
 		'Where else can you find a {malt} malt paired with a {hop} hop, but Avery?  Artisan before those kids even knew what it meant.',
 		'The {adjective} qualities of this {name} make it totally {adjective}',
         'Drinking {name} reminds me of a night of {adjective} fun and the {pairings} we ate while gazing into the stars',
-        'If Avery\'s {name} was a member of my preferred sex, I would definitely buy it a {pairing}',
-        'The {adjective} {hops} define the {category} and make my {name} the best in the biz',
-        'When I heard that Avery\'s {name} was so {adjective} I didn\'t believe it. But I tried it and left my wife immediately to start brewing my own {category}',
+        'If Avery\'s {name} was a member of my preferred sex, I would definitely buy it a {pairings}',
+        'The {adjective} {hop} define the {cat} and make my {name} the best in the biz',
+        'When I heard that Avery\'s {name} was so {adjective} I didn\'t believe it. But I tried it and left my wife immediately to start brewing my own {cat}',
         'The {adjective} {hop} in the {name} remind me of bathing in a pool with Mermaids',
         'You will really feel the {hop} hops where it counts in the {name}',
-        'The {name} {category} is so {adjective} that I will literally bathe my Pug in it',
+        'The {name} {cat} is so {adjective} that I will literally bathe my Pug in it',
         'I find that the {adjective} {hop} hops bring out the true {adjective} aroma in the {name}',
-        'I have never thought about drinking another {category} after drinking {name}. Unless the alternative was Organic and Gluten-free. Then I\'d think about it'
+        'I have never thought about drinking another {cat} after drinking {name}. Unless the alternative was Organic and Gluten-free. Then I\'d think about it',
         'The Pope once said that the {hop} hops in the {name} are so {adjective} that it could litrally be used to bless infants',
-        'You literally can\'t find another {category} like {name} anywhere. The {hop} hops and {adjective} taste make it so {adjective} that it will leave you speechless'
+        'You literally can\'t find another {cat} like {name} anywhere. The {hop} hops and {adjective} taste make it so {adjective} that it will leave you speechless',
+        'The {adjective} way Avery uses the {hop} hops in the {name} truly makes it a game changer',
+        'Avery\'s {name} completely revolutionizes the {cat} category. It\'s {adjective} use of the aromatic {hop} to balance out the {adjective} yeast results in a {adjective} beer you can brin to your mother',
+        'I have never seen a {yeast} ferment the way it does in the {name} . It is truly a {adjective} specimen',
+        'The Avery {name} is the most important {category} of the decade',
+        'I often use the {adjective} {name} to lighten up before heading out and krumping for the evening',
+
+
 	];
 
 	function sentencePolisher(template) {
