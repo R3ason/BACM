@@ -165,7 +165,10 @@ var HipsterDictionary = (function(Window, undefined ){
 	];
 
 	var errorMessages = [
-		'Good sir, you have confounded me and left me speechless. Enjoy your {name}'
+		'Good sir, you have confounded me and left me speechless. Enjoy your {name}',
+        'Radical, you chose the {name} and you look good drinking it.',
+        'I really liked the {name} when it first came out, but now it\'s still pretty good',
+        'I hear {name} is Charles Bukowski\'s fav'
 	];
 
 	function sentencePolisher(template) {
