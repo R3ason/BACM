@@ -34,7 +34,7 @@
 }
 
 .beer-info {
-	color: beige;
+	color: rgb(240, 240, 240);
 	list-style: none;
 	padding: 0;
 }
@@ -51,12 +51,21 @@
 }
 
 .label-and-info {
+	padding-top: 110px;
 	width: 30%;
 	height: 20%;
 }
 
 .stache {
+	padding-top: 185px;
 	width: 60%;
+}
+
+.hipster-text {
+	padding-top: 45px;
+	font-size: 30px;
+	color: rgb(240, 240, 240);
+	text-shadow: 2px 2px 5px rgb(0,0,0);
 }
 
 .generator-btn {
