@@ -210,8 +210,7 @@
 			var locator = this;
 			if ('geolocation' in navigator) {
 				/* geolocation is available */
-				navigator.geolocation.getCurrentPosition(function(position) {
-					var position = {
+				var position = {
 						coords: {
 							accuracy :20,
 							altitude:null,
@@ -222,10 +221,11 @@
 							speed:null
 						}
 					};
+					// We're hard coding location because chrome won't let us get location over http (which we need for heroku)
+				//navigator.geolocation.getCurrentPosition(function(position) {
 					locator.initMap(position);
-					debugger;
 					locator.findBeer(position);
-				});
+				//});
 			} else {
 				/* geolocation IS NOT available */
 				console.error('Geolocation not supported');
