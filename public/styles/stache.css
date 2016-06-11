@@ -127,6 +127,11 @@ ul.relatedBeers li a {
 	text-align: center;
 }
 
+.suggest-prompt {
+	font-size: 16px;
+	color: rgb(195, 195, 195);
+}
+
 @media screen and (max-width: 600px)
 {
 
@@ -159,7 +164,19 @@ ul.relatedBeers li a {
 		float: none !important;
 		margin: auto;
 		padding-top: 0;
-		width: inherit;
+		width: inherit
+	}
+
+	nav{
+		font-size: 1.5em;
+	}
+
+	p.suggest-prompt {
+		font-size: 1.5em;
+	}
+
+	.beer-label{
+		width: 75%;
 	}
 }
 
@@ -181,7 +198,23 @@ ul.relatedBeers li a {
 		margin: auto;
 		padding-top: 0;
 		width: inherit;
-		font-size: 2em;
+		font-size: 1.75em;
+	}
+
+	.generator-btn{
+		font-size: 1.1em;
+	}
+
+	nav{
+		font-size: 1.5em;
+	}
+
+	p.suggest-prompt {
+		font-size: 1.5em;
+	}
+
+	.beer-label{
+		width: 75%;
 	}
 }
 
@@ -203,6 +236,23 @@ ul.relatedBeers li a {
 		margin: auto;
 		padding-top: 0;
 		width: inherit;
+		font-size: 1.5em;
+	}
+
+	.generator-btn{
+		font-size: 1.1em;
+	}
+
+	nav{
+		font-size: 1.5em;
+	}
+
+	p.suggest-prompt {
+		font-size: 1.5em;
+	}
+
+	.beer-label{
+		width: 75%;
 	}
 }
 
@@ -224,10 +274,22 @@ ul.relatedBeers li a {
 		margin: auto;
 		padding-top: 0;
 		width: inherit;
+		font-size: 1.5em;
 	}
-}
 
-.suggest-prompt {
-	font-size: 16px;
-	color: rgb(195, 195, 195);
+	.generator-btn{
+		font-size: 1.1em;
+	}
+
+	nav{
+		font-size: 1.5em;
+	}
+
+	p.suggest-prompt {
+		font-size: 1.5em;
+	}
+
+	.beer-label{
+		width: 75%;
+	}
 }
