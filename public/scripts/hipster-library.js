@@ -15,7 +15,9 @@ var HipsterDictionary = (function(Window, undefined ){
 		'discerning',
 		'hipster',
 		'rugged',
-		'confounded'
+		'confounded',
+		'timid',
+		'flamboyant'
 	];
 
 	var loadingMessages = [
@@ -25,7 +27,8 @@ var HipsterDictionary = (function(Window, undefined ){
 		'drinking beer...',
 		'grooming moustache...',
 		'beeeeeeeer...',
-        'listening to a band you haven\'t heard of...'
+        'listening to a band you haven\'t heard of...',
+		'Adding more flannel...'
 	];
 
 	var partOfSpeech = {
@@ -126,7 +129,7 @@ var HipsterDictionary = (function(Window, undefined ){
         'It\'s so ironic that the {hop} hops and the {yeast} yeast in the {name} come together in such a {adjective} way.',
         'This {name} goes really well with {pairings}',
         'I\'ve associated {name} with {pairings} since before {pairing} was even a thing',
-        'It strikes me as supremely {adjective} that the {noun} in the {name} even classifies as {cat}. It is obviously far more {adjective}',
+        'It strikes me as supremely {adjective} that the {noun} in the {name} even classifies as {cat} . It is obviously far more {adjective}',
         'I think Ayn Rand once said that this {name} is {adjective} and that we should all drink it',
         'The {noun} paired with {pairings} really rounds out the {hop} hops and {yeast} yeasts in the Avery {name}',
 	];
@@ -251,7 +254,7 @@ var HipsterDictionary = (function(Window, undefined ){
 					}
 			}
 
-			template = templateArray.join(' ').replace(' ,', ',');
+			template = templateArray.join(' ').replace(' ,', ',').replace(' .', '.');
 
 			// Fix quotes
 			var quote = template.match(/\" (.*)\ "/)
