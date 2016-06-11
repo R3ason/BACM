@@ -58,8 +58,18 @@ var HipsterDictionary = (function(Window, undefined ){
 				adjectiveList = adjectiveList.concat(category);
 			}
 		}
+
+		//Build Noun List
+		var nounList = [];
+		for(var i = 0; i < partOfSpeech.noun.length; i++) {
+			var category = beerObject[partOfSpeech.adjective[i]];
+			if(category) {
+				nounList = nounList.concat(category);
+			}
+		}
+
 		template = template;
-		debugger;
+
 		return template;
 	}
 
@@ -89,6 +99,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		beerElements.description = rootElement.find('#Description');
 		beerElements.location = rootElement.find('#Location');
 		beerElements.updateDescriptionLink = rootElement.find('a');
+		beerElements.loadingDiv = rootElement.find('div.loader');
 	}
 
 	function bindElements() {
@@ -129,6 +140,8 @@ var HipsterDictionary = (function(Window, undefined ){
 		beerElements.beerStyle.text(beerObject.style);
 		beerElements.abv.text(beerObject.abv);
 		beerElements.description.text(generateDescription());
+
+		beerElements.loadingDiv.hide();
 		
 	}
 	return {
