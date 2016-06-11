@@ -5,7 +5,6 @@ block pagestyles
 	link(rel="stylesheet", href="../styles/stache.css")
 
 block content
-	div.overlay
 	a(href="http://www.averybrewery.com")
 		img.top-logo(src="/images/avery-tab.svg", alt="Avery Brewery logo")
 	section.card.clearfix
@@ -37,6 +36,7 @@ block content
 						li
 							a(href="/stache/" + beer.id)= beer.name
 
+	div.overlay
 block pagescripts
 	script(src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js")
 	script(src="/scripts/twitter-button.js")

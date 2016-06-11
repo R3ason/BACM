@@ -59,9 +59,10 @@
 				}
 			},this))
 		},
-		findBeer:function(position){
+		findBeer:function(position, distance){
 			var base = 'http://apis.mondorobot.com/beer-finder',
-				distance = this.MILES,
+				distance = distance || this.MILES,
+				maxDistance = 100,
 				//TODO: get from query string
 				beer = $('#map').data('beer');
 			
@@ -70,6 +71,10 @@
 			}
 
 			var $ajax = $.ajax({
+				beforeSend:function(xhr, settings){
+					console.log('beforeSend:', arguments);
+					settings.distance = distance;
+				},
 				context:this,
 				data:{
 					beer:beer,
@@ -77,55 +82,41 @@
 					lat:position.coords.latitude,
 					long:position.coords.longitude
 				},
-				url:base
-			}).then(function(response){
-				var locator = this,
-					$list = $('#locations-list');
+				success:function(response, textStatus, xhr){
+				
+					var locator = this,
+						$list = $('#locations-list');
 
-				$.each(response.results,function(i, result){
-					var address = [result.address.street, result.address.city, result.address.state].join(', '),
-						additionalBeers = function(beers) {
-							if(beers.length){
-								var content = ['<dt>Additional beer:</dt>\n<dd><ul>'],
-									items = $.map(beers,function(beer,i){
-										var name = beer.name;
+					if(!!response.results.length){
+						$('#no-beer-found').remove();
 
-										if(locator.beersByName[beer.name]){
-											var beer = locator.beersByName[beer.name];
-											name = '<a href="/stache/' + beer.id  + '">' + beer.name + '</a>'
-										}
+						$.each(response.results,function(i, result){
+							var $item = createListItem();
 
-										return '<li>' + name + '</li>'
-									}).join('');
-
-								content.push(items,'</ul></dd>');
-
-								return content.join('');
+							locator.geocodeAddr(result);
+							setTimeout(function(){
+								$list.append($item.fadeIn());
+							},i * 250);
+							
+						});
+					}
+					else if(distance < maxDistance){
+						locator.findBeer(position, distance * 2);
+					}
+					else{
+						$list
+							.append('<div id="no-beer-found"><p>' + locator.beersById[beer].name + ' is not available within ' + maxDistance + ' miles of your location.<br/>Check out one of the other great Avery beers:</p></div>')
+						var $otherBeers = $('<ul>').append($.map(locator.beersById,function(b,i){
+							if(b !== beer){
+								return '<li><a href="/locator/' + b.id  + '">' + b.name + '</a> <small>('+ b.abv +'% abv)</small></li>';
 							}
-						},
-						$item = $([
-							'<li class="location"">',
-								'<article>',
-									'<h3 class="capitalize ', locator._removeSpaces(result.name) ,'">',
-										result.name.toLowerCase(),
-									'</h3>',
-									'<dl>',
-										'<dt>Address:</dt>',
-										'<dd class="capitalize">', address.toLowerCase(), '</dd>',
-										'<dt>Phone:</dt>',
-										'<dd><a href="tel:', result.phone ,'">', result.phone,'</a></dd>',
-										additionalBeers(result.additional_beers),
-									'</dl>',
-								'</article>',
-							'</li>'
-						].join(''));
+						}).join(''));
 
-					locator.geocodeAddr(result);
-					setTimeout(function(){
-						$list.append($item.fadeIn());
-					},i * 250);
-					
-				});
+						$('#no-beer-found')
+							.append($otherBeers)
+					}
+				},
+				url:base
 			}).then(function(){
 				$('body').removeClass('loading');
 			});
@@ -199,6 +190,47 @@
 
 			this.beersById = idDict;
 			this.beersByName = nameDict;
+		},
+
+		createListItem:function(result){
+			var address = [result.address.street, result.address.city, result.address.state].join(', '),
+				additionalBeers = function(beers) {
+					if(beers.length){
+						var content = ['<dt>Additional beer:</dt>\n<dd><ul>'],
+							items = $.map(beers,function(beer,i){
+								var name = beer.name;
+
+								if(locator.beersByName[beer.name]){
+									var beer = locator.beersByName[beer.name];
+									name = '<a href="/stache/' + beer.id  + '">' + beer.name + '</a>'
+								}
+
+								return '<li>' + name + ' <small>('+ beer.abv +'% abv)></small></li>'
+							}).join('');
+
+						content.push(items,'</ul></dd>');
+
+						return content.join('');
+					}
+				},
+				$item = $([
+					'<li class="location"">',
+						'<article>',
+							'<h3 class="capitalize ', locator._removeSpaces(result.name) ,'">',
+								result.name.toLowerCase(),
+							'</h3>',
+							'<dl>',
+								'<dt>Address:</dt>',
+								'<dd class="capitalize">', address.toLowerCase(), '</dd>',
+								'<dt>Phone:</dt>',
+								'<dd><a href="tel:', result.phone ,'">', result.phone,'</a></dd>',
+								additionalBeers(result.additional_beers),
+							'</dl>',
+						'</article>',
+					'</li>'
+				].join(''));
+
+				return $item;
 		},
 
 		_removeSpaces:function(str){
