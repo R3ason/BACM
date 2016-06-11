@@ -7,6 +7,15 @@ var HipsterDictionary = (function(Window, undefined ){
     var rootElement;
     var beerElements = {};
     var beerObject = {};
+
+    var loadingMessages = [
+        'consulting hipsters...',
+        'growing hipster beard...',
+        'summoning hipster...',
+        'drinking beer...',
+        'grooming moustache...',
+        'beeeeeeeer...'
+    ];
     
     var partOfSpeech = {
         'noun': [
@@ -71,9 +80,22 @@ var HipsterDictionary = (function(Window, undefined ){
         beerElements.updateDescriptionLink.on('click', $.proxy(handleDescriptionUpdate, this));
     }
 
+    function addMask(element) {
+        var loadingIndex = Math.floor(Math.random() * loadingMessages.length) + 1;
+        element.text(loadingMessages[loadingIndex - 1]);
+    }
+
+    function removeMask(element) {
+        //
+    }
+
     function handleDescriptionUpdate(e) {
         e.preventDefault();
-        beerElements.description.text(generateDescription());
+        addMask(beerElements.description);
+        setTimeout(function(){
+            beerElements.description.text(generateDescription());
+            removeMask(beerElements.description);
+        }, 1500);
     }
     function callBeerApi(beerId, callback) {
         $.ajax({
