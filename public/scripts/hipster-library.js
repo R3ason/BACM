@@ -4,6 +4,7 @@
 var HipsterDictionary = (function(Window, undefined ){
 
     var beerApiUrl = 'http://apis.mondorobot.com/beers/';
+    var rootElement;
     var beerElements = {};
     
     var partOfSpeech = {
@@ -58,13 +59,13 @@ var HipsterDictionary = (function(Window, undefined ){
     }
     
     function cacheElements() {
-        beerElements.beerName = $(this).find('#beerName');
-        beerElements.beerLabel = $(this).find('#beerLabel');
-        beerElements.beerStyle = $(this).find('#beerStyle');
-        beerElements.abv = $(this).find('#beerName');
-        beerElements.description = $(this).find('#description');
-        beerElements.generatedDescription = $(this).find('#generatedDescription');
-        beerElements.location = $(this).find('#location');
+        rootElement = $('.card');
+        beerElements.beerName = rootElement.find('#BeerName');
+        beerElements.beerLabel = rootElement.find('#BeerLabel');
+        beerElements.beerStyle = rootElement.find('#BeerStyle');
+        beerElements.abv = rootElement.find('#ABV');
+        beerElements.description = rootElement.find('#Description');
+        beerElements.location = rootElement.find('#Location');
     }
 
     function callBeerApi(beerId, callback) {
