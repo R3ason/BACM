@@ -34,7 +34,8 @@ var HipsterDictionary = (function(Window, undefined ){
 		'Adding more flannel...',
         'riding my fixie...',
         'pausing my 45...',
-        'lend me your beard...'
+        'lend me your beard...',
+		'locating the closest hipster...'
 	];
 
 	var partOfSpeech = {
@@ -133,7 +134,7 @@ var HipsterDictionary = (function(Window, undefined ){
         'The {adjective} method Avery uses the {hop} hops in the {name} truly makes it a game changer',
         'Avery\'s {name} completely revolutionizes the {cat} category.',
         '{name}\'s {adjective} use of the aromatic {hop} hops to balance out the {adjective} yeast results in a {adjective} beer you can bring to your mother',
-        'I have never seen a {yeast} ferment the way it does in the {name}. It is truly a {adjective} specimen',
+        'I have never seen the {yeast} ferment the way it does in the {name}. It is truly a {adjective} specimen',
         'The Avery {name} is the most important {cat} of the decade',
         'I often use the {adjective} {name} to lighten up before heading out and krumping for the evening',
         'It\'s so ironic that the {hop} hops and the {yeast} yeast in the {name} come together in such a {adjective} way.',
@@ -154,7 +155,7 @@ var HipsterDictionary = (function(Window, undefined ){
         'A {cat} style beer like this {name} was invented by {adjective} tiger tamers in Eastern Indiana',
         'The {yeast} yeast goes through a {adjective} process that is authentic to the {name}',
         'The artful collaboration of {noun} \'s {malt} malts and the {adjective} {noun} is really a comment on society',
-        '{name} \'s {yeast} yeasts and {adjective} {hops} provide a whistfully {adjective} exposure to the {cat} beers',
+        '{name} \'s {yeast} yeast and {adjective} {hops} provide a whistfully {adjective} exposure to the {cat} beers',
         'Knowing the {adjective} relationship the brewer has with the {malt} malts makes me feel like I\'m really connecting with the {name}',
 	];
 
@@ -323,6 +324,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		beerElements.updateDescriptionLink = rootElement.find('#HipsterLink');
 		beerElements.loadingDiv = $('div.loader');
 		beerElements.tweetButtonHolder = $('#tweetButtonHolder');
+		beerElements.relatedLinksList = $('ul.relatedBeers');
 	}
 
 	console.log(beerElements.tweetButton);
@@ -381,6 +383,8 @@ var HipsterDictionary = (function(Window, undefined ){
 
 		generateTwitterButton(descrip);
 
+		generateRelatedLinks();
+
 		setTimeout(function() {
 			beerElements.loadingDiv.hide();
 		}, 1500);
@@ -423,6 +427,17 @@ var HipsterDictionary = (function(Window, undefined ){
 		}
 	}
 
+	function generateRelatedLinks() {
+		beerElements.relatedLinksList.empty();
+		if(beerObject.related_beers) {
+			var relatedBeers = beerObject.related_beers;
+			for(var i = 0; i < relatedBeers.length; i++) {
+				var listItem = $('<li><a href="javascript:void(0);" data-id="' + relatedBeers[i].id + '">' + relatedBeers[i].name + '</a></li>');
+				beerElements.relatedLinksList.append(listItem.clone());
+			}
+		}
+	}
+
 	function shuffle(array) {
 		var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -443,7 +458,7 @@ var HipsterDictionary = (function(Window, undefined ){
 
 	function toTitleCase(str)
 	{
-		return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+		return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1);});
 	}
 
 

@@ -34,6 +34,15 @@ body, html {
 	line-height: 40px;
 	text-transform: capitalize;
 }
+
+.hipster-text:before {
+	content: open-quote;
+}
+
+.hipster-text:after {
+	content: close-quote;
+}
+
 #beerSignature {
 	text-align: right;
 }

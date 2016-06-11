@@ -61,6 +61,34 @@
 	width: 60%;
 }
 
+nav {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 0;
+}
+ul.relatedBeers {
+	color: rgb(240, 240, 240);
+	list-style: none;
+	padding: 0;
+}
+
+ul.relatedBeers li {
+	border: 1px solid gainsboro;
+	margin: 1px;
+	background-color: #1F1E1D;
+	display:block;
+	float:left;
+	padding: 8px;
+	text-align: center;
+	width: 33%;
+}
+
+ul.relatedBeers li a {
+	color: rgb(240, 240, 240);
+}
+
 .centerHorizontal{
 	margin: auto;
 	text-align: center;
