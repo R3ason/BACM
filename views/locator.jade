@@ -1,0 +1,15 @@
+extends layout
+
+block pagestyles
+	link(rel="stylesheet", href="http://cdn.leafletjs.com/leaflet/v1.0.0-rc.1/leaflet.css")
+	link(rel="stylesheet", href="../styles/locator.css")
+
+block content
+	h1 Find Beer
+	article#locator-content.row-fluid
+
+		div#map.col-md-12
+
+block pagescripts
+	script(src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js")
+	script(src="../scripts/locator-module.js")
