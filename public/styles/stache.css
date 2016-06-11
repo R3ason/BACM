@@ -2,22 +2,34 @@ section.card{
 	box-shadow: 3px 3px rgba(0,0,0,.15);
 	border: 1px solid;
 	border-radius: 5px;
-	max-height: 500px;
-	max-width: 300px;
+	max-width: 350px;
 
 	margin: 50px auto;
 	padding: 20px;
 
 }
 
+
+
 img{
+	border-bottom: 1px solid black;
 	display: block;
-	max-height: 200px;
-	max-width: 200px;
+	margin: 15px auto;
+
+	max-width: 100%;
+
+	padding-bottom: 25px;
 }
 
 ul{
+	border-bottom: 1px solid black;
 	list-style: none;
+	padding-bottom: 15px
+}
+
+article{
+	padding: 15px 5px;
+
 }
 
 .centerHorizontal{

@@ -8,14 +8,17 @@ block content
 	section.card
 
 		h1.BeerName.centerHorizontal IPA
-		img(src="https://avery-ipas-apis.s3.amazonaws.com/uploads/beer/bottle_image/10/1454460192_Can_ipa.png" alt="Image of delicious beer")#BeerLabel.centerHorizontal
+		img(src="https://avery-ipas-apis.s3.amazonaws.com/uploads/beer/bottle_image/10/1454460192_Can_ipa.png" alt="Image of delicious beer")#BeerLabel
 
 
 		ul.BeerInfo.centerHorizontal
-			li.beerStyle good
-			li.abv a lot
+			li.beerStyle Style: {{beerStyle}}
+			li.abv Alcohol by volume: {{abv}}
 
-		article.Description.centerHorizontal Some awesome stuff that describes the beer
+		article.Description.centerHorizontal Some awesome stuff that describes the beer.
+
+		a(href="beer description generator")
+			escaped Generate your Hipster Description&#8482; here!! 
 
 
 block pagescripts
