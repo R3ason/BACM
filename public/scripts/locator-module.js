@@ -46,7 +46,7 @@
 					map = L.map('map').setView(coords, zoom);
 
 				//add map
-				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+				L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 					attribution: '',
 					maxZoom: 18
 				}).addTo(map);
@@ -78,7 +78,7 @@
 			},this))
 		},
 		findBeer:function(position, distance){
-			var base = 'http://apis.mondorobot.com/beer-finder',
+			var base = 'https://apis.mondorobot.com/beer-finder',
 				distance = distance || this.MILES,
 				maxDistance = 100,
 				//TODO: get from query string
