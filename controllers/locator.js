@@ -1,17 +1,31 @@
-var request = require('request');
+var request = require('request'),
+	parseJson = require('parse-json');
 
 var locatorController = {
 	locator: function(req, res) {
-		var allbeer;
-		request('http://apis.mondorobot.com/beers/', function (error, response, body) {
+		var allbeer = {}, beer = {}, id = '';
+		request('http://apis.mondorobot.com/beers/', function (error, allResponse, allBody) {
 			if (!error && response.statusCode == 200) {
-				allbeer = body;
-			}
+				allbeer = allBody;
 
-			res.render('locator', { 
-				beer: req.params.id,
-				allbeer: allbeer
-			});
+				if(req.params.id !== ''){
+					request('http://apis.mondorobot.com/beers/' + req.params.id, function(err, beerResp, beerBody){
+						beer = parseJson(beerBody).beer;
+						console.log('beer:\n',beer.description,beer.name);
+
+						res.render('locator', { 
+							id: req.params.id,
+							beer: beer,
+							allbeer: allbeer
+						});
+					});
+				}
+				else{
+					res.render('locator', { 
+						allbeer: allbeer
+					});
+				}
+			}
 		});
 	}
 };

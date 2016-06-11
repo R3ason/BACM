@@ -10,14 +10,13 @@ block content
 			img.brand(src="/images/avery.png", alt="Avery Brewery logo")
 
 		article#Description.centerHorizontal.row-md-3
-			p.hipster-text Some awesome stuff that describes the beer.
-			p#beerSignature.signature-text ~
+			p.hipster-text=beer.description
+			p#beerSignature.signature-text=beer.name
 
-	//- img(src="/images/avery.png", alt="Avery Brewery logo")
 	article#root.row-fluid.map-and-info(data-all-beer=allbeer)
 
 		section.col-md-8.col-md-offset-1
-			div#map(data-beer=beer)
+			div#map(data-beer=id)
 		section.col-md-2
 			ul#locations-list
 
