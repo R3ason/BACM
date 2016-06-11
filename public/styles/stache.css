@@ -1,0 +1,26 @@
+section.card{
+	box-shadow: 3px 3px rgba(0,0,0,.15);
+	border: 1px solid;
+	border-radius: 5px;
+	max-height: 500px;
+	max-width: 300px;
+
+	margin: 50px auto;
+	padding: 20px;
+
+}
+
+img{
+	display: block;
+	max-height: 200px;
+	max-width: 200px;
+}
+
+ul{
+	list-style: none;
+}
+
+.centerHorizontal{
+	margin: auto;
+	text-align: center;
+}
