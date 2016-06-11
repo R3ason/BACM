@@ -6,12 +6,19 @@
 		MILES:10,
 		ALL_BEER:{},
 		MARKERS:{},
+		BEER:{},
 		init:function(){
+			var $description = $('#Description');
 			this.$root = $('#root');
 			this.ALL_BEER = this.$root.data('all-beer').beers;
-			
+			this.BEER = $description
+				.data('beer');
+				
+			$description.removeAttr('data-beer');
+
 			this.$root
 				.data('all-beer',this.ALL_BEER)
+				.data('beer', this.BEER)
 				.removeAttr('data-all-beer');
 
 			this.mapAllBeers();
@@ -64,12 +71,13 @@
 				distance = distance || this.MILES,
 				maxDistance = 100,
 				//TODO: get from query string
-				beer = $('#map').data('beer'),
+				beer = $('#map').data('beer-id'),
 				$list = $('#locations-list');
 			
 			if(!beer){
 				$list
-					.append('<div id="no-beer-found"></div>');
+					.hide()
+					.after('<div id="no-beer-found"></div>');
 
 				var $otherBeers = $('<ul>').append($.map(locator.beersById,function(b,i){
 					return '<li><a href="/locator/' + b.id  + '">' + b.name + '</a> <small>('+ b.abv +'% abv)</small></li>';
@@ -99,6 +107,7 @@
 
 					if(!!response.results.length){
 						$('#no-beer-found').remove();
+						$list.show();
 
 						$.each(response.results,function(i, result){
 							var $item = locator.createListItem(result);
@@ -114,10 +123,20 @@
 						locator.findBeer(position, distance * 2);
 					}
 					else{
+						var be = this.BEER;
 						$list
-							.append('<div id="no-beer-found"><p>' + locator.beersById[beer].name + ' is not available within ' + maxDistance + ' miles of your location.<br/>Check out one of the other great Avery beers:</p></div>')
+							.hide()
+							.after([
+								'<div id="no-beer-found"><dl><dt class="h4">Availability:</dt><dd>',
+									!!be.availabilities.length ? be.availabilities.join(', ') : 'Check back soon',
+									'</dd></dl><p>',
+										be.name, 
+										' is not available within ', 
+										maxDistance, 
+										' miles of your location.<br/>Check out one of the other great Avery beers:</p></div>'
+							].join(''))
 						var $otherBeers = $('<ul>').append($.map(locator.beersById,function(b,i){
-							if(b !== beer){
+							if(be.id !== b.id){
 								return '<li><a href="/locator/' + b.id  + '">' + b.name + '</a> <small>('+ b.abv +'% abv)</small></li>';
 							}
 						}).join(''));
@@ -156,16 +175,19 @@
 						shadowUrl: '/images/marker-shadow.png',
 						iconSize:[25, 41], // size of the icon
 						iconAnchor:[25, 41], // point of the icon which will correspond to marker's location
-						popupAnchor:[-3, -76], // point from which the popup should open relative to the iconAnchor
+						popupAnchor:[-10, -30], // point from which the popup should open relative to the iconAnchor
 						className:className
 					});
 
 				this.MARKERS[className] = [coords.lat, coords.lng];
 
-				L.marker([coords.lat, coords.lng],{ icon: avery })
-					.addTo(map)
-					.bindPopup(content.join(''));
-					//.openPopup()
+				var marker = L.marker([coords.lat, coords.lng],{ 
+					icon: avery,
+					alt:address,
+					title:address,
+					riseOnHover:true
+				 })
+					.addTo(map);
 					
 			}
 			else{
