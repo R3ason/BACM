@@ -433,7 +433,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		if(beerObject.related_beers) {
 			var relatedBeers = beerObject.related_beers;
 			for(var i = 0; i < relatedBeers.length; i++) {
-				var listItem = $('<li><a href="javascript:void(0);" data-id="' + relatedBeers[i].id + '">' + relatedBeers[i].name + '</a></li>');
+				var listItem = $('<li><a href="' + relatedBeers[i].id + '">' + relatedBeers[i].name + '</a></li>');
 				beerElements.relatedLinksList.append(listItem.clone());
 			}
 		}
