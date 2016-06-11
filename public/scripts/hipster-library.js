@@ -36,7 +36,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		'pairings': [
 			'pairings'
 		],
-		'category': [
+		'cat': [
 			'categories'
 		],
 		'yeast': [
@@ -114,7 +114,6 @@ var HipsterDictionary = (function(Window, undefined ){
         'I have never thought about drinking another {category} after drinking {name}. Unless the alternative was Organic and Gluten-free. Then I\'d think about it'
         'The Pope once said that the {hop} hops in the {name} are so {adjective} that it could litrally be used to bless infants',
         'You literally can\'t find another {category} like {name} anywhere. The {hop} hops and {adjective} taste make it so {adjective} that it will leave you speechless'
-
 	];
 
 	function sentencePolisher(template) {
@@ -170,8 +169,8 @@ var HipsterDictionary = (function(Window, undefined ){
 
 		//Build Category List
 		var categoryList = [];
-		for(var i = 0; i < partOfSpeech.category.length; i++) {
-			var category = beerObject[partOfSpeech.category[i]];
+		for(var i = 0; i < partOfSpeech.cat.length; i++) {
+			var category = beerObject[partOfSpeech.cat[i]];
 			if(category) {
 				categoryList = categoryList.concat(category);
 			}
@@ -203,7 +202,6 @@ var HipsterDictionary = (function(Window, undefined ){
 		maltList = shuffle(maltList);
 
 		var templateArray = template.split(" ");
-		
 		//Todo [Ben]: popping WILL break this if there are more instances than in the array!!!
 		for (var i = 0; i < templateArray.length; i++) {
 			var currentItem = templateArray[i];
@@ -220,7 +218,7 @@ var HipsterDictionary = (function(Window, undefined ){
 					case '{pairings}':
 						templateArray[i] = pairingList.pop().toLowerCase();
 						break;
-					case '{category}':
+					case '{cat}':
 						templateArray[i] = categoryList.pop().toLowerCase();
 						break;
 					case '{yeast}':
@@ -231,7 +229,7 @@ var HipsterDictionary = (function(Window, undefined ){
 				}
 		}
 
-		template = templateArray.join(' ');
+		template = templateArray.join(' ').replace(' ,', ',');
 
 		return template;
 	}
@@ -261,7 +259,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		beerElements.abv = rootElement.find('#ABV');
 		beerElements.description = rootElement.find('#Description');
 		beerElements.location = rootElement.find('#Location');
-		beerElements.updateDescriptionLink = rootElement.find('a');
+		beerElements.updateDescriptionLink = rootElement.find('#HipsterLink');
 		beerElements.loadingDiv = $('div.loader');
 	}
 

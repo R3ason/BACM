@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.get('/', indexController.index);
 
 app.get('/locator', locatorController.locator);
+app.get('/locator/:id', locatorController.locator);
 
 app.get('/stache/:id', stacheController.stache);
 app.get('/stache', stacheController.stache);

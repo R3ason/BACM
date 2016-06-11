@@ -1,4 +1,4 @@
-section.card{
+/*section.card{
 	box-shadow: 3px 3px rgba(0,0,0,.15);
 	border: 1px solid;
 	border-radius: 5px;
@@ -8,9 +8,9 @@ section.card{
 	padding: 20px;
 	position: relative;
 
-}
+}*/
 
-div.loader{
+.loader{
 	color: transparent;
 	background-color: #1F1E1D;
 	background-image: url("https://d13yacurqjgara.cloudfront.net/users/372480/screenshots/1975846/zedazeni-loader-2.gif");
@@ -26,27 +26,57 @@ div.loader{
 	z-index: 99;
 }
 
-img{
+.beer-label{
 	display: block;
-	margin: 15px auto;
+	margin: auto;
 	max-width: 75%;
 	padding-bottom: 25px;
 }
 
-img.loaderImg{
-
+.beer-info {
+	color: beige;
+	list-style: none;
+	padding: 0;
 }
 
-ul{
+.describer {
+	font-family: sans-serif;
+	font-size: 12px;
+	color: silver;
+}
+.beer-values {
+	font-family: "EB+Garamond";
+	color: rgb(240, 240, 240);
+	font-size: 14px;
+}
+
+.label-and-info {
+	width: 30%;
+	height: 20%;
+}
+
+.stache {
+	width: 60%;
+}
+
+.generator-btn {
+	font-family: sans-serif;
+}
+
+#widget a {
+	margin: auto;
+}
+
+/*ul{
 	border-bottom: 1px solid black;
 	list-style: none;
 	padding-bottom: 15px
-}
+}*/
 
-article{
+/*article{
 	padding: 15px 5px;
 
-}
+}*/
 
 .centerHorizontal{
 	margin: auto;
