@@ -142,7 +142,7 @@ var HipsterDictionary = (function(Window, undefined ){
         'This {name} goes really well with " {pairings} "',
         'I\'ve associated {name} with " {pairings} " since before " {pairings} " was even a thing',
         'It strikes me as supremely {adjective} that the {noun} in the {name} even classifies as {cat} . It is obviously far more {adjective}',
-        'I think Ayn Rand once said that this {name} is {adjective} and that we should all drink it',
+        'I think Ayn Rand once said that this {name} is " {adjective} " and that we should all drink it',
         'The {noun} paired with " {pairings} " really rounds out the {hop} hops and {yeast} yeasts in the Avery {name}',
         'I took the {name} with me on my " {pairings} " trip and the {yeast} yeasts really got me going',
         'If I\'m not mistaken, I believe the {hop} hops in this {name} were grown by {adjective} monks in the Himalayas.',
