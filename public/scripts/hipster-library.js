@@ -343,6 +343,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		link.setAttribute('style', 'margin-top:5px;');
 		link.setAttribute("data-size" ,"large");
 		link.setAttribute("data-related" ,"AveryBrewingCo,Mondo_Robot");
+		link.setAttribute("data-hastags", "AveryBeerstache");
 		beerElements.stache.append(link);
 		twttr.widgets.load();  //very important
 
