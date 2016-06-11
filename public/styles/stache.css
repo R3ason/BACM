@@ -62,7 +62,7 @@
 
 .stache {
 	z-index: 10;
-	padding-top: 205px;
+	padding-top: 156px;
 	width: 60%;
 }
 
@@ -108,7 +108,8 @@ ul.relatedBeers li a {
 	text-align: center;
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 600px)
+{
 
 	div.label-and-info {
 		float: none !important;
@@ -117,14 +118,95 @@ ul.relatedBeers li a {
 	}
 
 	div.stache.pull-left{
-		float: none;
+		float: none !important;
 		margin: auto;
 		padding-top: 0;
 		width: inherit;
 	}
 } 
 
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+  	div.label-and-info {
+		float: none !important;
+		margin: auto;
+		padding-top: 25%;
+	}
 
+	div.stache.pull-left{
+		float: none !important;
+		margin: auto;
+		padding-top: 0;
+		width: inherit;
+	}
+}
+
+/* ----------- iPhone 5 and 5S ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+  	div.label-and-info {
+		float: none !important;
+		margin: auto;
+		padding-top: 25%;
+	}
+
+	div.stache.pull-left{
+		float: none !important;
+		margin: auto;
+		padding-top: 0;
+		width: inherit;
+		font-size: 2em;
+	}
+}
+
+/* ----------- iPhone 6 ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+  	div.label-and-info {
+		float: none !important;
+		margin: auto;
+		padding-top: 25%;
+	}
+
+	div.stache.pull-left{
+		float: none !important;
+		margin: auto;
+		padding-top: 0;
+		width: inherit;
+	}
+}
+
+/* ----------- iPhone 6+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+  	div.label-and-info {
+		float: none !important;
+		margin: auto;
+		padding-top: 25%;
+	}
+
+	div.stache.pull-left{
+		float: none !important;
+		margin: auto;
+		padding-top: 0;
+		width: inherit;
+	}
+}
 
 
 
