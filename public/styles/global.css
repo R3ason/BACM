@@ -9,3 +9,56 @@ body, html {
 .backdrop {
 	background-image: url("/images/flannel.jpg");
 }
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to bottom, rgba(0,0,0,0.6) 12%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 55% ,rgba(0,0,0,0.95));
+	z-index: -1;
+}
+
+#Description {
+	color: rgb(240, 240, 240);
+	text-shadow: 2px 2px 5px rgb(0,0,0);
+}
+
+.hipster-text {
+	padding-top: 45px;
+	font-size: 35px;
+	line-height: 40px;
+	text-transform: capitalize;
+}
+
+.all-error {
+	color: rgb(240, 240, 240);
+	padding-top: 200px;
+	text-align: center;
+}
+
+.hipster-text:before {
+	content: open-quote;
+}
+
+.hipster-text:after {
+	content: close-quote;
+}
+
+#beerSignature {
+	text-align: right;
+}
+
+.generator-btn {
+	font-family: sans-serif;
+}
+
+.lower-button-holder {
+	margin: auto;
+	width: 75px;
+	z-index: 10;
+}

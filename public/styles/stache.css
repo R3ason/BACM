@@ -1,27 +1,3 @@
-/*section.card{
-	box-shadow: 3px 3px rgba(0,0,0,.15);
-	border: 1px solid;
-	border-radius: 5px;
-	max-width: 350px;
-
-	margin: 50px auto;
-	padding: 20px;
-	position: relative;
-
-}*/
-
-.overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	margin: auto;
-	width: 100%;
-	height: 100%;
-	background: linear-gradient(to bottom, rgba(0,0,0,0.6) 12%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 65% ,rgba(0,0,0,0.85));
-	z-index: -1;
-}
 
 .loader{
 	color: transparent;
@@ -39,11 +15,17 @@
 	z-index: 99;
 }
 
+.label-and-info {
+	padding-top: 150px;
+	width: 30%;
+	height: 20%;
+}
+
 .beer-label{
 	z-index: 10;
 	display: block;
 	margin: auto;
-	width: 75%;
+	width: 65%;
 	padding-bottom: 25px;
 }
 
@@ -53,13 +35,32 @@
 	left: 0;
 	right: 0;
 	margin: auto;
-	width: 165px;
+	width: 200px;
+}
+
+div.form-group p.select-label {
+	color: rgb(220, 220, 220);
+}
+
+.beers-holder {
+	padding-top: 18px;
+	padding-right: 40px;
+}
+
+.all-beers {
+	background-color: rgba(255, 255, 255, 0);
+    color: rgb(220, 220, 220);
 }
 
 .beer-info {
 	color: rgb(240, 240, 240);
 	list-style: none;
 	padding: 0;
+}
+
+.generator-btn{
+	background-color: grey;
+	color: white;
 }
 
 .describer {
@@ -73,56 +74,222 @@
 	font-size: 14px;
 }
 
-.label-and-info {
-	padding-top: 160px;
-	width: 30%;
-	height: 20%;
-}
-
 .stache {
 	z-index: 10;
-	padding-top: 205px;
+	padding-top: 156px;
 	width: 60%;
 }
 
-#Description {
+nav {
+	position: absolute;
+	bottom: 15px;
+	color: beige;
+	font-size: 20px;
+	left: 0;
+	right: 0;
+	padding: 0;
+}
+
+nav p {
+	text-align: center;
+}
+
+ul.relatedBeers {
 	color: rgb(240, 240, 240);
-	text-shadow: 2px 2px 5px rgb(0,0,0);
-}
-
-.hipster-text {
-	padding-top: 45px;
-	font-size: 35px;
-	line-height: 40px;
-	text-transform: capitalize;
-}
-#beerSignature {
-	text-align: right;
-}
-
-.generator-btn {
-	font-family: sans-serif;
-}
-
-.lower-button-holder {
-	margin: auto;
-	width: 75px;
-	padding-top: 30px;
-	z-index: 10;
-}
-
-/*ul{
-	border-bottom: 1px solid black;
 	list-style: none;
-	padding-bottom: 15px
-}*/
+	margin: auto;
+	padding: 0;
+	width: 50;
+}
 
-/*article{
-	padding: 15px 5px;
+ul.relatedBeers li {
+	display:block;
+	float:left;
+	padding: 8px;
+	text-align: center;
+	width: 32%;
+}
 
-}*/
+ul.relatedBeers li:first-child { 
+	border-right: 1px solid rgb(160, 135, 105);
+}
+
+ul.relatedBeers li:last-child {
+	border-left: 1px solid rgb(160, 135, 105);
+}
+
+ul.relatedBeers li a {
+	color: rgb(240, 240, 240);
+}
 
 .centerHorizontal{
 	margin: auto;
 	text-align: center;
+}
+
+.suggest-prompt {
+	font-size: 16px;
+	color: rgb(195, 195, 195);
+}
+
+@media screen and (max-width: 600px)
+{
+
+	div.label-and-info {
+		float: none !important;
+		margin: auto;
+		padding-top: 25%;
+	}
+
+	div.stache.pull-left{
+		float: none !important;
+		margin: auto;
+		padding-top: 0;
+		width: inherit;
+	}
+}
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+  	div.label-and-info {
+		float: none !important;
+		margin: auto;
+		padding-top: 25%;
+	}
+
+	div.stache.pull-left{
+		float: none !important;
+		margin: auto;
+		padding-top: 0;
+		width: inherit
+	}
+
+	nav{
+		font-size: 1.5em;
+	}
+
+	p.suggest-prompt {
+		font-size: 1.5em;
+	}
+
+	.beer-label{
+		width: 75%;
+	}
+}
+
+/* ----------- iPhone 5 and 5S ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+  	div.label-and-info {
+		float: none !important;
+		margin: auto;
+		padding-top: 25%;
+	}
+
+	div.stache.pull-left{
+		float: none !important;
+		margin: auto;
+		padding-top: 0;
+		width: inherit;
+		font-size: 1.75em;
+	}
+
+	.generator-btn{
+		font-size: 1.1em;
+	}
+
+	nav{
+		font-size: 1.5em;
+	}
+
+	p.suggest-prompt {
+		font-size: 1.5em;
+	}
+
+	.beer-label{
+		width: 75%;
+	}
+}
+
+/* ----------- iPhone 6 ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+  	div.label-and-info {
+		float: none !important;
+		margin: auto;
+		padding-top: 25%;
+	}
+
+	div.stache.pull-left{
+		float: none !important;
+		margin: auto;
+		padding-top: 0;
+		width: inherit;
+		font-size: 1.5em;
+	}
+
+	.generator-btn{
+		font-size: 1.1em;
+	}
+
+	nav{
+		font-size: 1.5em;
+	}
+
+	p.suggest-prompt {
+		font-size: 1.5em;
+	}
+
+	.beer-label{
+		width: 75%;
+	}
+}
+
+/* ----------- iPhone 6+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+  	div.label-and-info {
+		float: none !important;
+		margin: auto;
+		padding-top: 25%;
+	}
+
+	div.stache.pull-left{
+		float: none !important;
+		margin: auto;
+		padding-top: 0;
+		width: inherit;
+		font-size: 1.5em;
+	}
+
+	.generator-btn{
+		font-size: 1.1em;
+	}
+
+	nav{
+		font-size: 1.5em;
+	}
+
+	p.suggest-prompt {
+		font-size: 1.5em;
+	}
+
+	.beer-label{
+		width: 75%;
+	}
 }

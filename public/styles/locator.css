@@ -13,19 +13,53 @@ article{
 
 article > section{
 	background:rgba(255,255,255,0.95);
+	height: 500px;
+	overflow: auto;
+	margin-bottom:20px;
 }
 
-#map {
-	height: 700px;
-	width:100%;
-}
-
-#locations-list{
-	height: 700px;
+article > section > *{
 	overflow: auto;
 }
 
-#locations-list > li{
+.brand-container {
+	padding-top: 20px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.brand {
+	width: 55%;
+    max-width: 200px;
+    min-width: 111px;
+}
+
+#map {
+	/*height: 700px;*/
+	height: 100%;
+	width:100%;
+}
+#no-beer-found{
+	overflow: auto;
+	padding-bottom: 10px;
+}
+#no-beer-found p{
+	font-size: 18px;
+	padding: 10px 0;
+}
+
+.list-header {
+	font-size: 18px;
+	text-align: center;
+}
+
+#locations-list{
+	height: 434px;
+	overflow: auto;
+}
+
+#locations-list > li,
+#no-beer-found ul > li{
 	list-style: none;
 }
 

@@ -5,13 +5,25 @@ block pagestyles
 	link(rel="stylesheet", href="/styles/locator.css")
 
 block content
-	h1 Find Beer
-	//- img(src="/images/avery.png", alt="Avery Brewery logo")
-	article#root.row-fluid(data-all-beer=allbeer)
+	div.row-fluid.info-header.clearfix
+		div.pull-left.col-md-2.col-md-offset-1.brand-container
+			img.brand(src="/images/avery.png", alt="Avery Brewery logo")
 
-		section.col-md-9
-			div#map(data-beer=beer)
-		section.col-md-3
+		article#Description.centerHorizontal.col-md-7.description-container(data-beer=beer)
+			if beer && beer.description
+				p.hipster-text=beer.description
+			if beer && beer.name
+				p#beerSignature.signature-text=beer.name
+
+	article#root.row-fluid.map-and-info.clearfix(data-all-beer=allbeer)
+
+		section.col-md-8.col-md-offset-1
+			div#map(data-beer-id=id)
+		section.col-md-2
+			p.list-header
+				if beer && beer.name
+					= beer.name
+					|  Availability
 			ul#locations-list
 
 block pagescripts

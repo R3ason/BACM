@@ -5,8 +5,18 @@ block pagestyles
 	link(rel="stylesheet", href="../styles/stache.css")
 
 block content
-	a(href="http://www.averybrewery.com")
+	a(href="http://www.averybrewing.com" target="_new")
 		img.top-logo(src="/images/avery-tab.svg", alt="Avery Brewery logo")
+
+	div#allBeers.dropdown.beers-holder.pull-right
+		button.all-beers.btn.btn-default.dropdown-toggle(type="button", id="dropdownMenu1", data-toggle="dropdown", aria-haspopup="true", aria-expanded="true")
+			| Try one of our other tasty beers!
+			span.caret
+		ul.dropdown-menu(aria-labelledby="dropdownMenu4")
+			each beer in beers
+				li
+					a(href="/stache/" + beer.id)= beer.name
+	
 	section.card.clearfix
 		div.loader AVERY IS THE BEST
 
@@ -22,16 +32,20 @@ block content
 		div.stache.pull-left
 			div.generate-section.clearfix
 				button#HipsterLink.btn.btn-xs.btn-default.generator-btn.pull-right
-					escaped Generate Stache&#8482;
+					escaped Generate New Stache&#8482;
 
 			article#Description.centerHorizontal
 				p.hipster-text Some awesome stuff that describes the beer.
 				p#beerSignature.signature-text ~
 
 			div#tweetButtonHolder.lower-button-holder
-	div.overlay
+
+			nav.clearfix
+				p.suggest-prompt Similar beers you may also like...
+				ul.relatedBeers.clearfix
+
+block footer
+
 block pagescripts
-	script(src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js")
 	script(src="/scripts/twitter-button.js")
 	script(src="/scripts/hipster-library.js")
-	script(src="/scripts/stache-module.js")

@@ -9,8 +9,11 @@ var HipsterDictionary = (function(Window, undefined ){
 	var beerObject = {};
 	var abbreviatedBeerName;
 
+	// Twitter info
 	var twitterHashtag = ' #AveryBeerstache';
+	var twitterTruncate = '...';
 	var tweetLength = 140;
+	var twitterLinkLength = 24;
 
 	var authorAdjectives = [
 		'discerning',
@@ -18,7 +21,10 @@ var HipsterDictionary = (function(Window, undefined ){
 		'rugged',
 		'confounded',
 		'timid',
-		'flamboyant'
+		'flamboyant',
+		'disenchanted',
+		'pugnacious',
+		'prestigious'
 	];
 
 	var loadingMessages = [
@@ -28,10 +34,13 @@ var HipsterDictionary = (function(Window, undefined ){
 		'drinking beer...',
 		'grooming moustache...',
 		'beeeeeeeer...',
-        'listening to a band you haven\'t heard of...',
+		'listening to a band you probably haven\'t heard of...',
 		'Adding more flannel...',
-        'riding my fixie to get the answer...',
-        'pausing my 8-track...'
+		'riding my fixie...',
+		'pausing my 45...',
+		'lend me your beard...',
+		'locating the closest hipster...',
+		'dry-hopping your beer...'
 	];
 
 	var partOfSpeech = {
@@ -63,43 +72,45 @@ var HipsterDictionary = (function(Window, undefined ){
 		]
 	};
 
-    var exquisiteAdjectives = [
-        'amatory',
-        'bleeding edge',
-        'corpulent',
-        'comely',
-        'dilatory',
-        'efficacious',
-        'epic',
-        'equanimous',
-        'exclusive',
-        'fulsome',
-        'freemium',
-        'groundbreaking',
-        'gustatory',
-        'heuristic',
-        'hubristic',
-        'jocular',
-        'luminous',
-        'meretricious',
-        'obtuse',
-        'pioneering',
-        'quiescent',
-        'redolent',
-        'revolutionary',
-        'ruminative',
-        'sartorial',
-        'sticky',
-        'synergistic',
-        'turbulent',
-        'verdant',
-        'voracious',
-        'wheedling',
-        'unbelievable',
-        'unique',
-        'zealous',
-        'post-nouveau chic',
-    ];
+	var exquisiteAdjectives = [
+		'amatory',
+		'americana',
+		'bleeding edge',
+		'corpulent',
+		'comely',
+		'dilatory',
+		'efficacious',
+		'epic',
+		'equanimous',
+		'exclusive',
+		'fulsome',
+		'freemium',
+		'groundbreaking',
+		'gustatory',
+		'heuristic',
+		'hubristic',
+		'jocular',
+		'luminous',
+		'meretricious',
+		'nostalgic',
+		'obtuse',
+		'pioneering',
+		'quiescent',
+		'redolent',
+		'revolutionary',
+		'ruminative',
+		'sartorial',
+		'sticky',
+		'synergistic',
+		'turbulent',
+		'verdant',
+		'voracious',
+		'wheedling',
+		'unbelievable',
+		'unique',
+		'zealous',
+		'post-nouveau chic',
+	];
 
 	var templates = [
 		'This {name} is so {adjective}',
@@ -107,17 +118,17 @@ var HipsterDictionary = (function(Window, undefined ){
 		'The {hop} hops in my {name} really add to the {cat} , {adjective} flavors.',
 		'{name}: {adjective} artisinal disrupter extraordinaire!',
 		'{hop} hops enhance the matchless aroma and {adjective} essence of this {adjective} {name}.',
-		'I love embibing {name} with my " {pairings} " routine.  The {adjective} notes along with the {malt} malts add incredible mouth feel!',
+		'I love embibing {name} during my " {pairings} " routine.  The {adjective} notes along with the {malt} malts add incredible mouth feel!',
 		'Mucho gusto from the {adjective} {hop} hops in the {name} artfully mingle with the {yeast} yeast to create a uniquely supreme and {adjective} experience.',
 		'Premium nuance from the playful balance of {adjective} hops aroma with the {malt} malt addition make my {name} from Avery a glorious palate pleaser.',
-		'No #FOMO for the #YOLO thanks to Avery and my {name} with the totes killer, {adjective} {cat} flavor!',
+		'No #FOMO for the #YOLO thanks to Avery and my {name} with the totes killer, {adjective} , {cat} flavor!',
 		'Where else can you find a {malt} malt paired with a {hop} hop, but in the Avery {name}?  {adjective} before those kids even knew what it meant.',
 		'The {adjective} qualities of this {name} make it totally {adjective}',
         'Drinking {name} reminds me of a night of {adjective} fun and the kumquats we ate while gazing into the stars',
         'If Avery\'s {name} was a member of my preferred sex, I would definitely buy it dinner',
         'The {adjective} {hop} hops redefine the {cat} and make my {name} the best in the biz',
         'When I heard that Avery\'s {name} was so {adjective} I left my wife immediately to start brewing my own {cat} beers',
-        'The {adjective} {hop} hops in the {name} reminds me of bathing in a pool with Mermaids',
+        'The {adjective} {hop} hops in the {name} reminds me of bathing in a pool with Merpeople',
         'You will really feel the {hop} hops in the {name} where it counts',
         'The {name} {cat} is so {adjective} that I will literally bathe my Pug in it',
         'I find that the {adjective} {hop} hops bring out the true {adjective} aroma in the {name}',
@@ -126,17 +137,38 @@ var HipsterDictionary = (function(Window, undefined ){
         'You literally can\'t find another {cat} beer like {name} anywhere.',
         'The {hop} hops and {adjective} taste make {name} so {adjective} that it will leave you speechless',
         'The {adjective} method Avery uses the {hop} hops in the {name} truly makes it a game changer',
-        'Avery\'s {name} completely revolutionizes the {cat} category.',
+        'Avery\'s {name} completely revolutionizes the " {cat} " category.',
         '{name}\'s {adjective} use of the aromatic {hop} hops to balance out the {adjective} yeast results in a {adjective} beer you can bring to your mother',
-        'I have never seen a {yeast} ferment the way it does in the {name}. It is truly a {adjective} specimen',
-        'The Avery {name} is the most important {cat} of the decade',
+        'I have never seen the {yeast} ferment the way it does in the {name}. It is truly a {adjective} specimen',
+        'The Avery {name} is the most important {cat} beer of the decade',
         'I often use the {adjective} {name} to lighten up before heading out and krumping for the evening',
         'It\'s so ironic that the {hop} hops and the {yeast} yeast in the {name} come together in such a {adjective} way.',
         'This {name} goes really well with " {pairings} "',
         'I\'ve associated {name} with " {pairings} " since before " {pairings} " was even a thing',
         'It strikes me as supremely {adjective} that the {noun} in the {name} even classifies as {cat} . It is obviously far more {adjective}',
-        'I think Ayn Rand once said that this {name} is {adjective} and that we should all drink it',
+        'I think Ayn Rand once said that this {name} is " {adjective} " and that we should all drink it',
         'The {noun} paired with " {pairings} " really rounds out the {hop} hops and {yeast} yeasts in the Avery {name}',
+        'I took the {name} with me on my " {pairings} " trip and the {yeast} yeasts really got me going',
+        'If I\'m not mistaken, I believe the {hop} hops in this {name} were grown by {adjective} monks in the Himalayas.',
+        'The {malt} malt in this {name} has the perfect translucence for my vintage Polaroid selfies',
+        'The {adjective} {noun} in my {name} really reminds me of this one foreign film I watched',
+        'Avery\'s {name} used {malt} malt, {yeast} yeasts and a {noun} before they were even popular',
+        'The iridesent {yeast} yeasts in the {name} provide a truly {adjective} olfactory to cranial experience',
+        'The drinkability of this {name} is optimal when the {noun} {hop} hops are at the beginning of their season',
+        'These {adjective} {malt} malt in my {name} are so {adjective} that they really make my beard glisten',
+        'The {adjective} crafting of the {noun} and {noun} in this {adjective} {name} is truly {adjective}',
+        'A {cat} style beer like this {name} was invented by {adjective} tiger tamers in Eastern Indiana',
+        'The {yeast} yeast goes through a {adjective} process that is authentic to the {name}',
+        'The artful collaboration of the {noun} {malt} malt and the {adjective} {noun} if {name} is really a critique of society',
+        'The {yeast} yeast and {adjective} {hop} in {name} provide a whistfully {adjective} exposure to the {cat} beers',
+        'Knowing the {adjective} relationship the brewer has with the {malt} malt makes me feel like I\'m really connecting with the {name}',
+	];
+
+	var errorMessages = [
+		'Good sir, you have confounded me and left me speechless. Enjoy your {name}',
+        'Radical, you chose the {name} and you look good drinking it.',
+        'I really liked the {name} when it first came out, but now it\'s still pretty good',
+        'I hear {name} is Charles Bukowski\'s fav'
 	];
 
 	function sentencePolisher(template) {
@@ -159,10 +191,11 @@ var HipsterDictionary = (function(Window, undefined ){
 			}
 		}
 
-		exquisiteAdjectives = shuffle(exquisiteAdjectives).slice(-5);
+		// Only grab a few exquisite objectives. Let's not get too fancy
+		exquisiteAdjectives = shuffleArray(exquisiteAdjectives).slice(-5);
 
 		adjectiveList = adjectiveList.concat(exquisiteAdjectives);
-		adjectiveList = shuffle(adjectiveList);
+		adjectiveList = shuffleArray(adjectiveList);
 
 		//Build Noun List
 		var nounList = [];
@@ -173,7 +206,7 @@ var HipsterDictionary = (function(Window, undefined ){
 			}
 		}
 
-		nounList = shuffle(nounList);
+		nounList = shuffleArray(nounList);
 
 		//Build Hop List
 		var hopList = [];
@@ -184,7 +217,7 @@ var HipsterDictionary = (function(Window, undefined ){
 			}
 		}
 
-		hopList = shuffle(hopList);
+		hopList = shuffleArray(hopList);
 
 		//Build Pairing List
 		var pairingList = [];
@@ -195,7 +228,7 @@ var HipsterDictionary = (function(Window, undefined ){
 			}
 		}
 
-		pairingList = shuffle(pairingList);
+		pairingList = shuffleArray(pairingList);
 
 		//Build Category List
 		var categoryList = [];
@@ -205,9 +238,8 @@ var HipsterDictionary = (function(Window, undefined ){
 				categoryList = categoryList.concat(category);
 			}
 		}
-		//debugger;
 
-		categoryList = shuffle(categoryList);
+		categoryList = shuffleArray(categoryList);
 
 		//Build Yeast List
 		var yeastList = [];
@@ -218,7 +250,7 @@ var HipsterDictionary = (function(Window, undefined ){
 			}
 		}
 
-		yeastList = shuffle(yeastList);
+		yeastList = shuffleArray(yeastList);
 
 		//Build Malt List
 		var maltList = [];
@@ -229,9 +261,9 @@ var HipsterDictionary = (function(Window, undefined ){
 			}
 		}
 
-		maltList = shuffle(maltList);
+		maltList = shuffleArray(maltList);
 
-		var templateArray = template.split(" ");
+		var templateArray = template.split(' ');
 		//Todo [Ben]: popping WILL break this if there are more instances than in the array!!!
 		try {
 			for (var i = 0; i < templateArray.length; i++) {
@@ -260,27 +292,29 @@ var HipsterDictionary = (function(Window, undefined ){
 					}
 			}
 
-			template = templateArray.join(' ').replace(' ,', ',').replace(' .', '.');
+			template = templateArray.join(' ').replace(' ,', ',').replace(' .', '.').replace(' \'', '\'');
 
-			// Fix quotes
+			// Remove extra spaces around quotes
 			var quote = template.match(/\" (.*)\ "/)
 			if(quote) {
 				quote = quote.pop();
 				template = template.replace('" ' + quote + ' "', '"' + quote + '"');
 			}
 		} catch(err) {
-			template = 'Good sir, you have confounded me and left me speechless. Enjoy your ' + beerObject.name;
+			var errorIndex = getRandomNumber(errorMessages.length);
+			template = errorMessages[errorIndex];
 		}
 
+		template = template.replace('{name}', beerName);
 		return template;
 	}
 
 	function generateDescription() {
 		var tCount = templates.length;
-		var templateIndex = Math.floor(Math.random() * tCount) + 1;
-		var selectedTemplate = templates[templateIndex - 1];
+		var templateIndex = getRandomNumber(tCount);
+		var selectedTemplate = templates[templateIndex];
 		var finalSentence = sentencePolisher(selectedTemplate)
-		return finalSentence;
+		return toTitleCase(finalSentence);
 	};
 
 	function init()
@@ -289,7 +323,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		bindElements();
 		var href = window.location.href;
 		var beerId = href.substr(href.lastIndexOf('/') + 1);
-		callBeerApi(beerId, populatePageAssets);
+		callBeerApi(beerId || 'ipa', populatePageAssets);
 	}
 	
 	function cacheElements() {
@@ -304,17 +338,16 @@ var HipsterDictionary = (function(Window, undefined ){
 		beerElements.updateDescriptionLink = rootElement.find('#HipsterLink');
 		beerElements.loadingDiv = $('div.loader');
 		beerElements.tweetButtonHolder = $('#tweetButtonHolder');
+		beerElements.relatedLinksList = $('ul.relatedBeers');
 	}
-
-	console.log(beerElements.tweetButton);
 
 	function bindElements() {
 		beerElements.updateDescriptionLink.on('click', $.proxy(handleDescriptionUpdate, this));
 	}
 
 	function addMask(element) {
-		var loadingIndex = Math.floor(Math.random() * loadingMessages.length) + 1;
-		element.text(loadingMessages[loadingIndex - 1]);
+		var loadingIndex = getRandomNumber(loadingMessages.length);
+		element.text(loadingMessages[loadingIndex]);
 	}
 
 	function removeMask(element) {
@@ -323,67 +356,87 @@ var HipsterDictionary = (function(Window, undefined ){
 
 	function handleDescriptionUpdate(e) {
 		e.preventDefault();
+
+		$(e.currentTarget).attr('disabled', 'disabled');
 		beerElements.author.text('');
 		addMask(beerElements.description);
 		setTimeout(function(){
-			var descrip = generateDescription();
-			beerElements.description.text(descrip);
-			var authorDesc = shuffle(authorAdjectives).pop();
-			beerElements.author.text('~ A ' + authorDesc + ' ' + abbreviatedBeerName + " drinker")
-			generateTwitterButton(descrip);
+
+			setHipsterDescriptionText();
 
 			removeMask(beerElements.description);
 		}, 1500);
 	}
 	function callBeerApi(beerId, callback) {
-		$.ajax({
-			method: "get",
+		var xhr = $.ajax({
+			method: 'get',
 			url: beerApiUrl + beerId,
-			dataType: "json"
+			dataType: 'json'
 		})
 		.done(callback);
 	}
 
 	function populatePageAssets(data)
 	{
+		try {
 		beerObject = data.beer;
 		
-		beerElements.beerName.text(beerObject.name);
-		beerElements.beerLabel.attr('src', beerObject.label_image.original);
-		beerElements.beerStyle.text(beerObject.style);
-		beerElements.abv.text(beerObject.abv);
+			beerElements.beerName.text(beerObject.name);
+			beerElements.beerLabel.attr('src', beerObject.label_image.original);
+			beerElements.beerStyle.text(beerObject.style || "--");
+			beerElements.abv.text(beerObject.abv ? beerObject.abv + '%' : "--");
 
-		abbreviatedBeerName = beerObject.name.replace('The ', '');
+			abbreviatedBeerName = beerObject.name.replace('The ', '');
 
-		var descrip = generateDescription();
-		beerElements.description.text(descrip);
-		var authorDesc = shuffle(authorAdjectives).pop();
-		beerElements.author.text('~ A ' + authorDesc + ' ' + abbreviatedBeerName + " drinker")
+			setHipsterDescriptionText();
 
-		generateTwitterButton(descrip);
+			generateRelatedLinks();
 
-		setTimeout(function() {
-			beerElements.loadingDiv.hide();
-		}, 1500);
+		} catch (err) {
+			$('.card').children().each(function(v, i) {
+				$(this).hide();
+			})
+			$('.container-fluid').append('<div class="hipster-text all-error">That\'s a whole lotta plaid... Why don\'t you pick a beer from the menu on the right?</div>');
+
+		}
+			setTimeout(function() {
+				beerElements.loadingDiv.hide();
+			}, 1500);
 		
 	}
 
+	function setHipsterDescriptionText() {
+		var descrip = generateDescription();
+		beerElements.description.text(descrip);
+		var authorDesc = shuffleArray(authorAdjectives).pop();
+		beerElements.author.text('~ A ' + authorDesc + ' ' + abbreviatedBeerName + ' drinker');
+
+		generateTwitterButton(descrip);
+
+		beerElements.updateDescriptionLink.removeAttr('disabled');
+	}
+
 	function generateTwitterButton(descrip) {
-		descrip = descrip.substr(0, tweetLength - twitterHashtag.length - 3);
-		descrip = descrip.length == tweetLength - twitterHashtag.length - 3
-			? descrip + '...'
+		var longDescription = descrip;
+		var fullUrl = 'http://t.co/stache/' + beerObject.id + '?desc=' + encodeURI(longDescription);
+
+		descrip = descrip.substr(0, tweetLength - twitterHashtag.length - twitterTruncate.length - twitterLinkLength);
+		descrip = descrip.length == tweetLength - twitterHashtag.length - twitterTruncate.length - twitterLinkLength
+			? descrip + twitterTruncate
 			: descrip;
 
 		$('iframe').remove();
-		var link = document.createElement('a');
-		link.setAttribute('href', "https://twitter.com/intent/tweet?url=/&hashtags=AveryBeerstache");
-		link.setAttribute('class', 'twitter-share-button pull-right');
-		link.setAttribute('style', 'margin-top:5px;');
-		link.setAttribute("data-size" ,"large");
-		link.setAttribute('data-text', descrip);
-		link.setAttribute("data-related" ,"AveryBrewingCo,Mondo_Robot");
-		link.setAttribute("data-hastags", "AveryBeerstache");
-		beerElements.tweetButtonHolder.append(link);
+		beerElements.tweetButtonHolder.empty();
+		var element = document.createElement('a');
+		element.setAttribute('href', 'https://twitter.com/intent/tweet?hashtags=AveryBeerstache');
+		element.setAttribute('class', 'twitter-share-button pull-right');
+		element.setAttribute('style', 'margin-top:5px;');
+		element.setAttribute('data-size' ,'large');
+		element.setAttribute('data-text', descrip);
+
+		element.setAttribute('data-url', fullUrl);
+		element.setAttribute('data-related' ,'AveryBrewingCo,Mondo_Robot');
+		beerElements.tweetButtonHolder.append(element);
 		
 		try {
 			twttr.widgets.load();  //very important
@@ -404,24 +457,55 @@ var HipsterDictionary = (function(Window, undefined ){
 		}
 	}
 
-	function shuffle(array) {
-		var currentIndex = array.length, temporaryValue, randomIndex;
+	function generateRelatedLinks() {
+		beerElements.relatedLinksList.empty();
+		if(beerObject.related_beers && beerObject.related_beers.length > 0) {
+			var relatedBeers = beerObject.related_beers;
+			for(var i = 0; i < relatedBeers.length; i++) {
+				var listItem = $('<li><a href="' + relatedBeers[i].id + '">' + relatedBeers[i].name + '</a></li>');
+				beerElements.relatedLinksList.append(listItem.clone());
+			}
+			$('nav > p').show();
+		} else {
+			$('nav > p').hide();
+		}
+	}
 
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
+	function shuffleArray(array) {
+		var currentIndex = array.length;
+		var temporaryValue;
+		var randomIndex;
 
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
+		// While there remain elements to shuffle...
+		while (0 !== currentIndex) {
 
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
+			// Pick a remaining element...
+			randomIndex = getRandomNumber(currentIndex);
+			currentIndex -= 1;
 
-  return array;
-}
+			// And swap it with the current element.
+			temporaryValue = array[currentIndex];
+			array[currentIndex] = array[randomIndex];
+			array[randomIndex] = temporaryValue;
+		}
+		return array;
+	}
+
+	function toTitleCase(str)
+	{
+		return str.replace(
+			/\w\S*/g,
+			function(txt){
+				return txt.charAt(0).toUpperCase() + txt.substr(1);
+			}
+		);
+	}
+
+	function getRandomNumber(max) {
+		var rand = Math.floor(Math.random() * max)
+		return rand;
+	}
+
 
 	return {
 		GenerateDescription: generateDescription,
