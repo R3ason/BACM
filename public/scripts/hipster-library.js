@@ -16,7 +16,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		'grooming moustache...',
 		'beeeeeeeer...'
 	];
-	
+
 	var partOfSpeech = {
 		'noun': [
 			'hop_varieties',
@@ -47,6 +47,7 @@ var HipsterDictionary = (function(Window, undefined ){
 		"Premium nuance from the playful balance of {adjective} hops aroma with the {malt} addition make my {name} from Avery a glorious palate pleaser.",
 		"No FOMO for the YOLO thanks to Avery and my {name} with the totes killer, {adjective} {category} flavor!",
 		"Where else can you find a {malt} malt paired with a {hop} hop, but Avery?  Artisan before those kids even knew what it meant."
+		"Where else can you find a {malt} malt paired with a {hop} hop, but Avery?  Artisan before those kids even knew what it meant.",
 		'The {adjective} qualities of this {name} make it totally {adjective}'
 	];
 
@@ -58,8 +59,14 @@ var HipsterDictionary = (function(Window, undefined ){
 
 		//Build Adjective List
 		var adjectiveList = [];
-		//for(var i = 0; i < )
+		for(var i = 0; i < partOfSpeech.adjective.length; i++) {
+			var category = beerObject[partOfSpeech.adjective[i]];
+			if(category) {
+				adjectiveList = adjectiveList.concat(category);
+			}
+		}
 		template = template;
+		debugger;
 		return template;
 	}
 
