@@ -56,10 +56,8 @@
 				},
 				url:base
 			}).then(function(response){
-				console.log(response.results);
 				var locator = this;
 				$.each(response.results,function(i, result){
-					console.log(result);
 					locator.geocodeAddr(result.address);
 				});
 			});
@@ -74,7 +72,7 @@
 			console.log('geocoding ' + addr + '...');
 
 			$.getJSON(url)
-				.then($.proxy(this.plotLocation,this));
+				.then($.proxy(this.plotLocation, this));
 		},
 
 		plotLocation:function(response){
