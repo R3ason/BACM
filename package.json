@@ -1,19 +1,14 @@
 {
   "dependencies": {
+    "body-parser": "^1",
     "express": "^4",
     "jade": "^1",
-    "body-parser": "^1"
+    "parse-json": "^2.2.0"
   },
-  "devDependencies": {
-    "request": "^2.72.0",
-    "body-parser": "^1",
-    "request": "^2.72.0"
-  },
+  "devDependencies": {},
   "name": "barrel-aged-code-monkeys",
   "version": "1.0.0",
   "main": "app.js",
-  "devDependencies": {
-  },
   "scripts": {
     "start": "node app.js"
   },

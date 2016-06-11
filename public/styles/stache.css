@@ -1,27 +1,3 @@
-/*section.card{
-	box-shadow: 3px 3px rgba(0,0,0,.15);
-	border: 1px solid;
-	border-radius: 5px;
-	max-width: 350px;
-
-	margin: 50px auto;
-	padding: 20px;
-	position: relative;
-
-}*/
-
-.overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	margin: auto;
-	width: 100%;
-	height: 100%;
-	background: linear-gradient(to bottom, rgba(0,0,0,0.6) 12%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 65% ,rgba(0,0,0,0.85));
-	z-index: -1;
-}
 
 .loader{
 	color: transparent;
@@ -84,43 +60,6 @@
 	padding-top: 205px;
 	width: 60%;
 }
-
-#Description {
-	color: rgb(240, 240, 240);
-	text-shadow: 2px 2px 5px rgb(0,0,0);
-}
-
-.hipster-text {
-	padding-top: 45px;
-	font-size: 35px;
-	line-height: 40px;
-	text-transform: capitalize;
-}
-#beerSignature {
-	text-align: right;
-}
-
-.generator-btn {
-	font-family: sans-serif;
-}
-
-.lower-button-holder {
-	margin: auto;
-	width: 75px;
-	padding-top: 30px;
-	z-index: 10;
-}
-
-/*ul{
-	border-bottom: 1px solid black;
-	list-style: none;
-	padding-bottom: 15px
-}*/
-
-/*article{
-	padding: 15px 5px;
-
-}*/
 
 .centerHorizontal{
 	margin: auto;
