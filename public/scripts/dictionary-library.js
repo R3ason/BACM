@@ -11,4 +11,4 @@ var partOfSpeech = {
     ]
 }
 
-var templates = 
+var templates;
