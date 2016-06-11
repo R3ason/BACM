@@ -16,7 +16,9 @@ article > section{
 }
 
 .brand {
-	width: 35%;
+	width: 80%;
+    max-width: 160px;
+    min-width: 100px;
 }
 
 .map-and-info {

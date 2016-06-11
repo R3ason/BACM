@@ -155,8 +155,8 @@ var HipsterDictionary = (function(Window, undefined ){
         'The {adjective} crafting of the {noun} and {noun} in this {adjective} {name} is truly {adjective}',
         'A {cat} style beer like this {name} was invented by {adjective} tiger tamers in Eastern Indiana',
         'The {yeast} yeast goes through a {adjective} process that is authentic to the {name}',
-        'The artful collaboration of {noun} \'s {malt} malt and the {adjective} {noun} is really a comment on society',
-        '{name} \'s {yeast} yeast and {adjective} {hops} provide a whistfully {adjective} exposure to the {cat} beers',
+        'The artful collaboration of the {noun} {malt} malt and the {adjective} {noun} if {name} is really a critique of society',
+        'The {yeast} yeast and {adjective} {hop} in {name} provide a whistfully {adjective} exposure to the {cat} beers',
         'Knowing the {adjective} relationship the brewer has with the {malt} malt makes me feel like I\'m really connecting with the {name}',
 	];
 
