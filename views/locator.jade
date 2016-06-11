@@ -6,20 +6,23 @@ block pagestyles
 
 block content
 	div.row-fluid.info-header
-		div.pull-left.col-md-3.col-md-offset-1
+		div.pull-left.col-md-2.col-md-offset-1.brand-container
 			img.brand(src="/images/avery.png", alt="Avery Brewery logo")
 
-		article#Description.centerHorizontal.row-md-3
+		article#Description.centerHorizontal.col-md-7.description-container
 			if beer && beer.description
 				p.hipster-text=beer.description
 			if beer && beer.name
 				p#beerSignature.signature-text=beer.name
 
-	article#root.row-fluid.map-and-info(data-all-beer=allbeer)
+	article#root.row-fluid.map-and-info.clearfix(data-all-beer=allbeer)
 
 		section.col-md-8.col-md-offset-1
 			div#map(data-beer=id)
 		section.col-md-2
+			p.list-header
+				= beer.name
+				|  Availability
 			ul#locations-list
 
 block pagescripts
