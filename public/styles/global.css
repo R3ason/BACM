@@ -54,6 +54,5 @@ body, html {
 .lower-button-holder {
 	margin: auto;
 	width: 75px;
-	padding-top: 30px;
 	z-index: 10;
 }
