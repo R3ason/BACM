@@ -21,6 +21,17 @@
 				.data('beer', this.BEER)
 				.removeAttr('data-all-beer');
 
+			var desc = this.getParameterByName('desc'),
+				auth = this.getParameterByName('auth');
+
+			if(!!desc){
+				$('#Description .hipster-text').text(desc);
+			}
+
+			if(!!auth){
+				$('#beerSignature').text(auth);
+			}
+
 			this.mapAllBeers();
 			this.getLocation();
 			this.attachEvents();
@@ -278,6 +289,16 @@
 			// console.log("editedNum: ", editedNum);
 
 			return editedNum;
+		},
+
+		getParameterByName: function(name, url) {
+			if (!url) url = window.location.href;
+			name = name.replace(/[\[\]]/g, "\\$&");
+			var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+				results = regex.exec(url);
+			if (!results) return null;
+			if (!results[2]) return '';
+			return decodeURIComponent(results[2].replace(/\+/g, " "));
 		}
 	};
 
