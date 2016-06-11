@@ -10,8 +10,10 @@ block content
 			img.brand(src="/images/avery.png", alt="Avery Brewery logo")
 
 		article#Description.centerHorizontal.row-md-3
-			p.hipster-text=beer.description
-			p#beerSignature.signature-text=beer.name
+			if beer && beer.description
+				p.hipster-text=beer.description
+			if beer && beer.name
+				p#beerSignature.signature-text=beer.name
 
 	article#root.row-fluid.map-and-info(data-all-beer=allbeer)
 

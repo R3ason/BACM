@@ -23,11 +23,6 @@ article > section{
 	padding-top: 90px
 }
 
-.signature-text:before{
-	content:"~ ";
-	speak:none;
-}
-
 #map {
 	/*height: 700px;*/
 	height: 500px;
