@@ -46,7 +46,7 @@
 					map = L.map('map').setView(coords, zoom);
 
 				//add map
-				L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 					attribution: '',
 					maxZoom: 18
 				}).addTo(map);
