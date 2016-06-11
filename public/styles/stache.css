@@ -19,7 +19,7 @@
 	z-index: 10;
 	display: block;
 	margin: auto;
-	width: 75%;
+	width: 65%;
 	padding-bottom: 25px;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .label-and-info {
-	padding-top: 160px;
+	padding-top: 140px;
 	width: 30%;
 	height: 20%;
 }
